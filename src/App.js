@@ -1,12 +1,12 @@
 import GlobalStyle from "./Style/GlobalStyle";
-import Container from "Component/Container";
+import MDOption from "./Component/MDOption";
 import Nav from "./Component/Nav/Nav";
 function App() {
   return (
     <div className="App">
       <GlobalStyle />
       <Nav />
-      <Container />
+      <MDOption />
     </div>
   );
 }

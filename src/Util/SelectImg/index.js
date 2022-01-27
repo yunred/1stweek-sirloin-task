@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import * as S from '/home/wongue/1stweek-sirloin-task/src/Util/SelectImg/style.js';
 
 const SelectImg = (props) => {
@@ -8,11 +8,11 @@ const SelectImg = (props) => {
 
     return(
         <form onSubmit={(e) => e.preventDefault()}>
-            <S.Button onClick={()=>imgInput.current.click()}>+ 이미지 첨부</S.Button>
-            <S.Input type={'file'} accept='image/*' onChange={(e) => imgSetter([...imgList, e.target.files[0]])} ref={imgInput}></S.Input>
+            <S.Button onClick={useCallback(()=>imgInput.current.click(),[imgInput])}>+ 이미지 첨부</S.Button>
+            <S.Input type={'file'} accept='image/*' onChange={useCallback((e) => imgSetter([...imgList, e.target.files[0]]))} ref={imgInput}></S.Input>
         </form>
     )
 
 } 
 
-export default SelectImg
+export default React.memo(SelectImg);
