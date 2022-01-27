@@ -3,8 +3,8 @@ const Container = (props) => {
     const ContainerContent = props.ContainerContent; 
     return(
         <>
-            <ContainerHeader/>
-            <ContainerContent/>
+            {ContainerHeader}
+            {ContainerContent}
         </>
         )
 }
