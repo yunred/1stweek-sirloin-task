@@ -1,5 +1,5 @@
 import GlobalStyle from "./Style/GlobalStyle";
-import Container from "Component/Container";
+import MDOption from "./Component/MDOption";
 import Nav from "./Component/Nav/Nav";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <GlobalStyle />
       <Nav />
-      <Container />
+      <MDOption />
     </div>
   );
 }
