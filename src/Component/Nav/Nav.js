@@ -1,4 +1,3 @@
-import React from "react";
 import * as Style from "./NavStyle";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -24,10 +23,14 @@ const Nav = (props) => {
   return (
     <Style.NavContainer>
       {menu.map((index, title) => (
-        <Style.NavMenu key={index}>
+        <Style.NavMenu key={index.id}>
           <Style.MenuDropDown>
             <div>{index.title}</div>
-            <Style.DropDownImage selected={index.id} icon={faChevronDown} />
+            <Style.DropDownImage
+              key={index.id}
+              selected={index.id}
+              icon={faChevronDown}
+            />
           </Style.MenuDropDown>
         </Style.NavMenu>
       ))}
