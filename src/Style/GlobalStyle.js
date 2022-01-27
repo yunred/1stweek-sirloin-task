@@ -6,6 +6,7 @@ body {
 	padding: 0;
   box-sizing: border-box;
   font-size: 14px;
+  background-color: rgb(239,239,239);
 }
 `;
 

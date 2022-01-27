@@ -1,6 +1,6 @@
 import react from "react";
 import Container from "Component/Container";
-import * as S from "./style"
+import * as S from "./style";
 
 /*
 props = {
@@ -44,13 +44,12 @@ export const MDOheader = (props) => {
 }
 
 export const MDOContent = (props) => {
-
-    return(
-        <S.DefaultScreen>
-            <S.H3>옵션 세트를 추가하여 옵션을 구성해 주세요</S.H3>
-        </S.DefaultScreen>
-    )
-}
+  return (
+    <S.DefaultScreen>
+      <S.H3>옵션 세트를 추가하여 옵션을 구성해 주세요</S.H3>
+    </S.DefaultScreen>
+  );
+};
 
 const MDOption = (props) => {
     const optionSetList = props.optionSetList;
