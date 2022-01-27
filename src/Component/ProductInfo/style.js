@@ -27,15 +27,6 @@ export const ProductInfoContainer = styled.div`
 `;
 
 export const Title = styled.span`
-width: 160px;
-border-right : 1px solid #eee;
-min-height: 65px;
-display: flex;
-align-items: center;
-padding:6px 10px;
-`;
-
-export const Title = styled.span`
   width: 160px;
   border-right: 1px solid #eee;
   min-height: 65px;
