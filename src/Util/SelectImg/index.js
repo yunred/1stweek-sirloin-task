@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import * as S from '/home/wongue/1stweek-sirloin-task/src/Util/SelectImg/style.js';
+import React, { useCallback, useRef} from 'react';
+import * as S from 'Util/SelectImg/style.js';
 
 const SelectImg = (props) => {
     const imgList = props.imgList;
