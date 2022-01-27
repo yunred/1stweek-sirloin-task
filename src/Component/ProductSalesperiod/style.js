@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const ProductContainer = styled.span`
   font-size: 0.9em;
   font-weight: 900;
-  margin: 0.5em;
 `;
 
 export const ProductListContainer = styled.div`
