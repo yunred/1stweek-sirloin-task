@@ -20,15 +20,28 @@ props = {
 */
 
 export const MDOheader = (props) => {
-  const optionSetter = props.optionSetter;
+    const optionSetter = props.optionSetter;
+    const optionSetList = props.optionSetList;
+    console.log(optionSetList, optionSetter);
+    return(
+        <>
+            <S.ContainerName>상품 옵션</S.ContainerName>
+            <S.OptionSetAppederButton onClick={
+                (e)=> optionSetter([...optionSetList, {
+                    optionImg: [],
+                    optionList: [
+                        {
+                            optionName: '',
+                            optionValue: [undefined, undefined, undefined, false],
+                            additionnal: []
+                        }
+                    ]
+                }])
+                }>+ 옵션 세트 추가</S.OptionSetAppederButton>
+        </>
 
-  return (
-    <>
-      <S.ContainerName>상품 옵션</S.ContainerName>
-      <S.OptionSetAppederButton>+ 옵션 세트 추가</S.OptionSetAppederButton>
-    </>
-  );
-};
+    )
+}
 
 export const MDOContent = (props) => {
   return (
@@ -39,14 +52,13 @@ export const MDOContent = (props) => {
 };
 
 const MDOption = (props) => {
-  const optionState = props.optionState;
-  const optionSetter = props.optionSetter;
-  return (
-    <Container
-      ContainerHeader={<MDOheader />}
-      ContainerContent={<MDOContent />}
-    />
-  );
-};
+    const optionSetList = props.optionSetList;
+    const optionSetter = props.optionSetter;
+    return(
+        <Container ContainerHeader = {<MDOheader optionSetList= {optionSetList} optionSetter={optionSetter}/>} ContainerContent = {<MDOContent/>}/>
+    )
+}
 
-export default MDOption;
+
+
+export default MDOption
