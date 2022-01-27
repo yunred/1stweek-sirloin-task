@@ -1,8 +1,10 @@
-import Container from 'Component/Container';
+import GlobalStyle from "./Style/GlobalStyle";
+import Container from "Component/Container";
 function App() {
   return (
     <div className="App">
-      <Container/>
+      <GlobalStyle />
+      <Container />
     </div>
   );
 }
