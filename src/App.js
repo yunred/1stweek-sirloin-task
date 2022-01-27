@@ -1,12 +1,15 @@
 import GlobalStyle from "./Style/GlobalStyle";
 import MDOption from "./Component/MDOption";
 import Nav from "./Component/Nav/Nav";
+import { useState } from "react";
 function App() {
+  const [optionSetList, optionSetter] = useState([]);
+  
   return (
     <div className="App">
       <GlobalStyle />
       <Nav />
-      <MDOption />
+      <MDOption optionSetter={optionSetter} optionSetList={optionSetList}/>
     </div>
   );
 }
