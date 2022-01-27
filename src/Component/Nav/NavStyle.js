@@ -25,7 +25,7 @@ export const NavMenu = styled.li`
     font-size: 16px;
   }
   &:nth-child(n + 6):nth-child(-n + 7) {
-    background: gray;
+    background: rgb(229, 229, 229);
   }
   &:nth-child(8) {
     color: rgb(53, 47, 110);
