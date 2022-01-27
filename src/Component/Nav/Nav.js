@@ -14,7 +14,33 @@ const NavMenu = styled.li``;
 
 
 
+
+
 const Nav = () => {
+  const menu = [
+    {id: '1',
+      title: '기본설정'
+    },
+    {id: '2',
+    title: '회원'
+    },
+    {id: '3',
+    title: '진열'
+    },
+    {id: '4',
+    title: '상품'
+    },
+    {id: '5',
+    title: '주문'
+    },
+    {id: '6',
+    title: '배송'
+    },
+    {id: '7',
+    title: '기본설정'
+    },
+  ]
+
   return (
     <>
       <NavContainer>
