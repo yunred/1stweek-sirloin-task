@@ -1,4 +1,4 @@
-import * as S from './style.js'
+import * as S from "./style.js";
 
 const Container = (props) => {
   const ContainerHeader = props.ContainerHeader;

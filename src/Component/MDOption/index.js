@@ -1,6 +1,6 @@
 import react from "react";
 import Container from "Component/Container";
-import * as S from "./style"
+import * as S from "./style";
 
 /*
 props = {
@@ -20,33 +20,33 @@ props = {
 */
 
 export const MDOheader = (props) => {
-    const optionSetter = props.optionSetter;
+  const optionSetter = props.optionSetter;
 
-    return(
-        <>
-            <S.ContainerName>상품 옵션</S.ContainerName>
-            <S.OptionSetAppederButton>+ 옵션 세트 추가</S.OptionSetAppederButton>
-        </>
-    )
-}
+  return (
+    <>
+      <S.ContainerName>상품 옵션</S.ContainerName>
+      <S.OptionSetAppederButton>+ 옵션 세트 추가</S.OptionSetAppederButton>
+    </>
+  );
+};
 
 export const MDOContent = (props) => {
-
-    return(
-        <S.DefaultScreen>
-            <S.H3>옵션 세트를 추가하여 옵션을 구성해 주세요</S.H3>
-        </S.DefaultScreen>
-    )
-}
+  return (
+    <S.DefaultScreen>
+      <S.H3>옵션 세트를 추가하여 옵션을 구성해 주세요</S.H3>
+    </S.DefaultScreen>
+  );
+};
 
 const MDOption = (props) => {
-    const optionState = props.optionState;
-    const optionSetter = props.optionSetter;
-    return(
-        <Container ContainerHeader = {<MDOheader/>} ContainerContent = {<MDOContent/>}/>
-    )
-}
+  const optionState = props.optionState;
+  const optionSetter = props.optionSetter;
+  return (
+    <Container
+      ContainerHeader={<MDOheader />}
+      ContainerContent={<MDOContent />}
+    />
+  );
+};
 
-
-
-export default MDOption
+export default MDOption;
