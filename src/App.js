@@ -1,10 +1,10 @@
 import GlobalStyle from "./Style/GlobalStyle";
-import Container from "Component/Container";
+import MDOption from "./Component/MDOption";
 function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <Container />
+      <MDOption />
     </div>
   );
 }
