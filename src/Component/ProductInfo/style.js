@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CategoryContainer = styled.div`
+export const ProductInfoContainer = styled.div`
     border: 1px solid #eee;
     display: flex;
     flex-direction: column;
