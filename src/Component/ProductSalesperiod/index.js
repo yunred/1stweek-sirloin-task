@@ -1,7 +1,8 @@
 import Container from "Component/Container";
-import * as Style from "./";
+import PScontentBox from "./PScontentBox";
+import * as Style from "./style";
 
-export const PSheader = (props) => {
+export const PSheader = () => {
   return (
     <>
       <Style.ProductContainer>노출 및 판매기간 설정</Style.ProductContainer>
@@ -9,8 +10,13 @@ export const PSheader = (props) => {
   );
 };
 
-const ProductSalesperiod = () => {
-  return <Container ContainerHeader={<PSheader />} />;
+const ProductSalesperiod = (props) => {
+  return (
+    <Container
+      ContainerHeader={<PSheader />}
+      ContainerContent={<PScontentBox />}
+    />
+  );
 };
 
 export default ProductSalesperiod;

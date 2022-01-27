@@ -19,7 +19,7 @@ export const NavMenu = styled.li`
   text-align: left;
   font-weight: 600;
   border-bottom: 1px solid gray;
-  &: first-child {
+  &:first-child {
     padding: 12px 20px;
     color: rgb(53, 47, 110);
     font-size: 16px;

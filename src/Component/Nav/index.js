@@ -1,4 +1,4 @@
-import * as Style from "./NavStyle";
+import * as Style from "./style";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const Nav = (props) => {

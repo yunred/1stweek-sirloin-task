@@ -1,0 +1,28 @@
+import styled from "styled-components";
+
+export const ProductContainer = styled.span`
+  font-size: 0.9em;
+  font-weight: 900;
+  margin: 0.5em;
+`;
+
+export const ProductListContainer = styled.div`
+  display: flex;
+`;
+
+export const TitleBox = styled.div`
+  width: 20%;
+  border-right: 0.1em solid rgb(227, 227, 227);
+  border-top: 0.1em solid rgb(227, 227, 227);
+`;
+
+export const ContentsBox = styled.div`
+  width: 80%;
+  border-top: 0.1em solid rgb(227, 227, 227);
+  display: block;
+`;
+
+export const Input = styled.input`
+  width: 20px;
+  vertical-align: middle;
+`;
