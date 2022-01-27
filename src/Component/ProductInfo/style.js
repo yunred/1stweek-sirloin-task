@@ -20,6 +20,10 @@ export const ProductInfoContainer = styled.div`
     padding: 0;
   }
 
+  .productInfo-img-btn{
+    margin-right: 10px;
+  }
+
 `;
 
 export const Title = styled.span`
@@ -28,6 +32,7 @@ border-right : 1px solid #eee;
 min-height: 65px;
 display: flex;
 align-items: center;
+padding:6px 10px;
 `
 
 export const ItemContainer = styled.ul`
@@ -45,7 +50,7 @@ export const Item = styled.li`
 
 export const InnerContainer = styled.div`
   display: flex;
-  padding: 4px 8px;
+  padding: 10px 12px;
   width: 100%;
 `;
 
@@ -74,14 +79,37 @@ export const Check = styled.input`
 export const InputContainer = styled.div`
 border: 1px solid #eee;
 border-radius: 4px;
-width: 70%;
+width: 100%;
 padding: 4px 6px;
+height: 60%;
+align-self: center;
 
 input{
   height: 100%;
-  width: 90%;
+  width: 95%;
   background: none;
   outline: none;
   border: none;
+  font-size: 14px;
 }
 `
+
+export const ProductContainer = styled.div`
+
+width: 100%;
+display: flex;
+justify-content: space-around;
+
+span{
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+span:nth-child(1){
+  border-right: 1px solid #eee;
+}
+`
+
+export const ScrollContainer = styled.div``
