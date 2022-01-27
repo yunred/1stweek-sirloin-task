@@ -3,25 +3,38 @@ import styled from "styled-components";
 
 const NavContainer = styled.ul`
   list-style-type: none;
-  width: 25%;
+  margin: 0;
+  padding: 0;
+  width: 15%;
+  position: fixed;
   height: 100%;
+  overflow: auto;
+  border-right: 1px solid lightgray;
 `;
 
-const NavMenu = styled.li``;
+const NavMenu = styled.li`
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 1px solid lightgray;
+`;
 
 const Nav = () => {
   const menu = [
-    { id: "1", title: "기본설정" },
-    { id: "2", title: "회원" },
-    { id: "3", title: "진열" },
-    { id: "4", title: "상품" },
-    { id: "5", title: "주문" },
-    { id: "6", title: "배송" },
-    { id: "7", title: "프로모션" },
-    { id: "8", title: "혜택" },
-    { id: "9", title: "혜택" },
-    { id: "10", title: "고객 센터 관리" },
-    { id: "11", title: "알림" },
+    { title: "설로인" },
+    { title: "기본설정" },
+    { title: "회원" },
+    { title: "진열" },
+    { title: "상품" },
+    { title: "주문" },
+    { title: "배송" },
+    { title: "프로모션" },
+    { title: "혜택" },
+    { title: "혜택" },
+    { title: "고객 센터 관리" },
+    { title: "알림" },
   ];
 
   return (
