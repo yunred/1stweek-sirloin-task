@@ -1,48 +1,37 @@
 import React from "react";
-import styled from "styled-components";
+import * as Style from "./NavStyle";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-const NavContainer = styled.ul`
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 15%;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
-  border-right: 1px solid lightgray;
-`;
-
-const NavMenu = styled.li`
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
-  text-align: left;
-  font-weight: 600;
-  border-bottom: 1px solid lightgray;
-`;
-
-const Nav = () => {
+const Nav = (props) => {
   const menu = [
-    { title: "설로인" },
-    { title: "기본설정" },
-    { title: "회원" },
-    { title: "진열" },
-    { title: "상품" },
-    { title: "주문" },
-    { title: "배송" },
-    { title: "프로모션" },
-    { title: "혜택" },
-    { title: "혜택" },
-    { title: "고객 센터 관리" },
-    { title: "알림" },
+    { id: 1, title: "Sir.LOIN" },
+    { id: 2, title: "기본설정" },
+    { id: 3, title: "회원" },
+    { id: 4, title: "진열" },
+    { id: 5, title: "상품" },
+    { id: 6, title: "상품 리스트" },
+    { id: 7, title: "상품 재고 관리" },
+    { id: 8, title: "상품 등록" },
+    { id: 9, title: "주문" },
+    { id: 10, title: "배송" },
+    { id: 11, title: "프로모션" },
+    { id: 12, title: "혜택" },
+    { id: 13, title: "혜택" },
+    { id: 14, title: "고객 센터 관리" },
+    { id: 15, title: "알림" },
   ];
 
   return (
-    <NavContainer>
+    <Style.NavContainer>
       {menu.map((index, title) => (
-        <NavMenu key={index}>{index.title}</NavMenu>
+        <Style.NavMenu key={index}>
+          <Style.MenuDropDown>
+            <div>{index.title}</div>
+            <Style.DropDownImage selected={index.id} icon={faChevronDown} />
+          </Style.MenuDropDown>
+        </Style.NavMenu>
       ))}
-    </NavContainer>
+    </Style.NavContainer>
   );
 };
 
