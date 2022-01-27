@@ -1,8 +1,8 @@
-import Container from 'Component/Container';
+import Container from "Component/Container";
 function App() {
   return (
     <div className="App">
-      <Container/>
+      <Container />
     </div>
   );
 }
