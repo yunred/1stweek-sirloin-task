@@ -6,19 +6,13 @@ export const PSheader = (props) => {
 
   return (
     <>
-      <S.ContainerName>상품 옵션</S.ContainerName>
-      <S.OptionSetAppederButton>+ 옵션 세트 추가</S.OptionSetAppederButton>
+      <Style.ProductContainer>노출 및 판매기간 설정</Style.ProductContainer>
     </>
   );
 };
 
 const ProductSalesperiod = () => {
-  return (
-    <Container
-      ContainerHeader={<PSheader />}
-      ContainerContent={<MDOContent />}
-    />
-  );
+  return <Container ContainerHeader={<PSheader />} />;
 };
 
 export default ProductSalesperiod;
