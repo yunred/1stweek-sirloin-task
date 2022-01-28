@@ -1,16 +1,18 @@
-import React, { createContext, useState } from 'react';
-import PIData  from 'Component/ProductInfo/data';
-import PDImage from 'Component/ProductImage/data';
+import React, { createContext, useState } from "react";
+import PIData from "Component/ProductInfo/data";
+import PDImage from "Component/ProductImage/data";
 
 export const PDcontext = createContext();
 
-const PDdata = props => {
+const PDdata = (props) => {
   const [OptionSetList, setOptionLIst] = useState([]);
   const [ProductInfoList, setProductInfoLIst] = useState(PIData);
   const [ProductInfoOrder, setProductInfoOrder] = useState([PIOrder]);
   const [PDMileage, setPDMileage] = useState(true);
   const [ProductImage, setProductImage] = useState(PDImage);
   const [ETC, setETC] = useState(false);
+  const [PScontentBox, setPScontentBox] = useState();
+  const [PScontentBoxSecond, setPScontentBoxSecond] = useState();
 
   const PDdata = {
     OptionSetData: {
@@ -25,18 +27,26 @@ const PDdata = props => {
       state: ProductInfoOrder,
       setState: setProductInfoOrder,
     },
-    PDMileage:{
+    PDMileage: {
       state: PDMileage,
       setState: setPDMileage,
     },
-    PDImage:{
-      state:ProductImage,
-      setState:setProductImage
+    PDImage: {
+      state: ProductImage,
+      setState: setProductImage,
     },
-    ETC:{
+    ETC: {
       state: ETC,
       setState: setETC,
-    }
+    },
+    PScontentBox: {
+      state: PScontentBox,
+      setState: setPScontentBox,
+    },
+    PScontentBoxSecond: {
+      state: PScontentBoxSecond,
+      setState: setPScontentBoxSecond,
+    },
   };
 
   return (
@@ -45,11 +55,11 @@ const PDdata = props => {
 };
 
 const PIOrder = {
-  productname: '',
-  origin: '',
-  rating: '',
-  productstorage: '',
-  category: '',
+  productname: "",
+  origin: "",
+  rating: "",
+  productstorage: "",
+  category: "",
   moreinfo: [],
 };
 
