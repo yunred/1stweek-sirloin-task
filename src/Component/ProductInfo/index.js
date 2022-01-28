@@ -20,6 +20,7 @@ props = {
     filterTagList:[],
 
     Product:{
+      idx:""
       category:[],
       filterTag:[],
       name:"",
@@ -134,30 +135,37 @@ export const PIContent = (props) => {
     }
   }, [thumbnail]);
 
-  useEffect(()=>{
-    if(productImgList.length > 0){
+  useEffect(() => {
+    if (productImgList.length > 0) {
       const newState = { ...state };
+      const newItem = productImgList.pop();
+      productImgList.unshift(newItem);
       newState.product.imgs = productImgList;
       setState(newState);
     }
+  }, [productImgList]);
 
-  },[productImgList])
+  useEffect(()=>{
+    handleProductIdx();
+  },[])
 
-  const handleProductCategory = (e, item) => {
-    const index = e.target.value;
-
+  const handleProductCategory = (item) => {
     const newState = { ...state };
 
-    if (!newState.categoryList[index].checked) {
-      newState.product.category.push(newState.categoryList[index]);
+    const originalIndex = newState.categoryList.findIndex(
+      (el) => el.idx === item.idx
+    );
+
+    if (!newState.categoryList[originalIndex].checked) {
+      newState.product.category.push(newState.categoryList[originalIndex]);
     } else {
       const findIndex = newState.product.category.findIndex(
         (el) => el.idx === item.idx
       );
       newState.product.category.splice(findIndex, 1);
     }
-    newState.categoryList[index].checked =
-      !newState.categoryList[index].checked;
+    newState.categoryList[originalIndex].checked =
+      !newState.categoryList[originalIndex].checked;
 
     setState(newState);
   };
@@ -170,9 +178,10 @@ export const PIContent = (props) => {
     );
 
     if (!newState.filterTagList[originalIndex].checked) {
-      newState.product.filterTag.push(newState.filterTagList[index]);
+      newState.product.filterTag.push(newState.filterTagList[originalIndex]);
     } else {
-      newState.product.filterTag.splice(index, 1);
+      const findIndex = newState.product.filterTag.findIndex( el => el.idx === item.idx)
+      newState.product.filterTag.splice(findIndex, 1);
     }
     newState.filterTagList[originalIndex].checked =
       !newState.filterTagList[originalIndex].checked;
@@ -199,6 +208,7 @@ export const PIContent = (props) => {
 
   const handleKeyUp = (e) => {
     if (e.key === "Enter") {
+      setOpenFilterBox(true)
       handleSearch();
     }
   };
@@ -232,6 +242,41 @@ export const PIContent = (props) => {
     setState(newState);
   };
 
+  const handleProductIdx = () => {
+
+    let idx = '#';
+
+    const strArr = [];
+
+    for(let i = 'a'; i < 'z'; i++){
+        strArr.push(i);
+    }
+
+    for(let i = 'A'; i < 'Z'; i++){
+        strArr.push(i);
+    }
+
+    for(let i = 0; i < 9; i++){
+      strArr.push(i);
+    }
+
+    while(idx.length < 5){
+      idx += strArr[Math.floor(Math.random() * strArr.length)];
+    }
+    const newState = {...state}
+    newState.product.idx = idx;
+    setState(newState)
+  }
+
+  const handleImgPop = (item) => {
+
+    const newState = {...state}
+    const newArr = newState.product.imgs.filter(el => {if(el.name !== item.name) return el})
+    newState.product.imgs = newArr;
+    setState(newState);
+
+  }
+
   return (
     <S.ItemContainer>
       <S.Item>
@@ -244,8 +289,9 @@ export const PIContent = (props) => {
                   <S.Check
                     type="checkbox"
                     value={index}
-                    onClick={(e) => {
-                      handleProductCategory(e, item);
+                    checked={item.checked}
+                    onChange={() => {
+                      handleProductCategory(item);
                     }}
                   />
                   {item.content}
@@ -254,14 +300,22 @@ export const PIContent = (props) => {
             })}
           </S.ListContainer>
           <S.ListContainer width={`30%`}>
-            {state.product.category.map((item) => {
+            {state.product.category.length !== 0 ? state.product.category.map((item) => {
               return (
                 <S.Tag key={item.idx}>
                   {item.content}
-                  <button onClick={(e)=>{}}>X</button>
+                  <button
+                    onClick={() => {
+                      handleProductCategory(item);
+                    }}
+                  >
+                    X
+                  </button>
                 </S.Tag>
               );
-            })}
+            })
+            : <div>카테고리를 지정해주세요.</div>
+            }
           </S.ListContainer>
         </S.InnerContainer>
       </S.Item>
@@ -292,8 +346,10 @@ export const PIContent = (props) => {
           </S.InputContainer>
           {openFilterBox && (
             <S.FilterTagBox>
+              {filterTagData.length !== 0 && <p> 선택 가능한 태그</p>}
               <S.ListContainer className="filterList">
-                {filterTagData.map((item, index) => {
+              {filterTagData.length === 0 ? <p>검색 결과가 없습니다.</p> : 
+                filterTagData.map((item, index) => {
                   return (
                     !item.checked && (
                       <S.ListItem
@@ -314,6 +370,7 @@ export const PIContent = (props) => {
           )}
           {!openFilterBox && state.product.filterTag.length > 0 && (
             <S.FilterTagBox>
+                {state.product.filterTag.length !== 0 ? <p>지정된 필터태그</p> : null }
               <S.ListContainer className="filterList">
                 {state.product.filterTag.map((item, index) => {
                   return (
@@ -347,7 +404,7 @@ export const PIContent = (props) => {
             />
           </S.InputContainer>
           <S.ProductContainer>
-            <span>상품 코드</span> <span>상품코드</span>
+            <span>상품 코드</span> <span>{state.product.idx}</span>
           </S.ProductContainer>
         </S.InnerContainer>
       </S.Item>
@@ -380,11 +437,11 @@ export const PIContent = (props) => {
           이미지
         </S.Title>
         <S.InnerContainer>
-          <SelectImg imgList={productImgList} imgSetter={setProductImgList}/>
+          <SelectImg imgList={productImgList} imgSetter={setProductImgList} />
           <S.ListContainer>
             {state.product.imgs.length > 0 &&
               state.product.imgs.map((item) => {
-                return <S.ListItem key={item.name}>{item.name}</S.ListItem>;
+                return <S.ListItem key={item.name}>{item.name} <button onClick={()=>{handleImgPop(item)}}>X</button></S.ListItem>;
               })}
           </S.ListContainer>
         </S.InnerContainer>
