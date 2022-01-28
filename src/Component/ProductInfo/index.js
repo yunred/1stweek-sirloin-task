@@ -111,6 +111,7 @@ export const PIContent = (props) => {
   const setState = context.setState;
   const [filterTagData, setFilterTagData] = useState();
   const [imgList, setImgList] = useState([]);
+  const [thumbnail, setThumbnail] = useState("");
   const [openFilterBox, setOpenFilterBox] = useState(false);
   const [filterTagInput, setFilterTagInput] = useState("");
 
@@ -123,6 +124,15 @@ export const PIContent = (props) => {
 
     setFilterTagData(searchResultSort(filterTagCopyData));
   }, [state.filterTagList]);
+
+  useEffect(() => {
+    if (thumbnail !== "") {
+      const newState = { ...state };
+      newState.product.thumbnail = thumbnail[0];
+      thumbnail.shift();
+      setState(newState);
+    }
+  }, [thumbnail]);
 
   const handleProductCategory = (e, item) => {
     const index = e.target.value;
@@ -146,7 +156,9 @@ export const PIContent = (props) => {
   const handleProductFilterTag = (item, index) => {
     const newState = { ...state };
 
-    const originalIndex = newState.filterTagList.findIndex((el) => el.idx === item.idx);
+    const originalIndex = newState.filterTagList.findIndex(
+      (el) => el.idx === item.idx
+    );
 
     if (!newState.filterTagList[originalIndex].checked) {
       newState.product.filterTag.push(newState.filterTagList[index]);
@@ -164,41 +176,36 @@ export const PIContent = (props) => {
   };
 
   const handleSearch = () => {
+    let filterTagCopyData = [...state.filterTagList];
 
-      let filterTagCopyData = [...state.filterTagList];
-      
-      filterTagCopyData =
+    filterTagCopyData =
       filterTagInput !== ""
-      ? filterTagCopyData.filter((el) => {
-        if (el.content.indexOf(filterTagInput) !== -1) return el;
-      })
-      : filterTagCopyData;
+        ? filterTagCopyData.filter((el) => {
+            if (el.content.indexOf(filterTagInput) !== -1) return el;
+          })
+        : filterTagCopyData;
 
-      setFilterTagData(searchResultSort(filterTagCopyData));
-  }
+    setFilterTagData(searchResultSort(filterTagCopyData));
+  };
 
   const handleKeyUp = (e) => {
-
-    if(e.key === 'Enter'){
+    if (e.key === "Enter") {
       handleSearch();
     }
-  }
+  };
 
   const searchResultSort = (arr) => {
-
-    arr.sort((a,b)=>{
+    arr.sort((a, b) => {
       let x = a.content;
       let y = b.content;
-      
-      if(x < y) return -1;
-      if(x > y) return 1;
+
+      if (x < y) return -1;
+      if (x > y) return 1;
       return 0;
+    });
 
-    })
-
-    return arr
-
-  }
+    return arr;
+  };
 
   const handleProductDescription = (e) => {
     const newState = { ...state };
@@ -214,10 +221,6 @@ export const PIContent = (props) => {
     newState.product.name = e.target.value;
 
     setState(newState);
-  };
-
-  const handleProductThumbnail = () => {
-    const newState = { ...state };
   };
 
   const handleProductImg = () => {
@@ -260,18 +263,27 @@ export const PIContent = (props) => {
       <S.Item>
         <S.Title>필터 태그</S.Title>
         <S.InnerContainer className="filterBox">
-          <S.InputContainer
-          >
+          <S.InputContainer>
             <input
               type="text"
               placeholder="필터태그를 검색해 주세요."
-              onChange={(e) => {handleProductFilterTagSearch(e)}}
+              onChange={(e) => {
+                handleProductFilterTagSearch(e);
+              }}
               onClick={() => {
                 setOpenFilterBox(!openFilterBox);
               }}
-              onKeyPress={(e)=>{handleKeyUp(e)}}
+              onKeyPress={(e) => {
+                handleKeyUp(e);
+              }}
             />
-            <button onClick={()=>{handleSearch()}}>검색</button>
+            <button
+              onClick={() => {
+                handleSearch();
+              }}
+            >
+              검색
+            </button>
           </S.InputContainer>
           {openFilterBox && (
             <S.FilterTagBox>
@@ -351,8 +363,10 @@ export const PIContent = (props) => {
       <S.Item>
         <S.Title>상품 썸네일</S.Title>
         <S.InnerContainer>
-          <SelectImg />
-          <div>이미지 파일명.jpg</div>
+          <SelectImg imgList={thumbnail} imgSetter={setThumbnail} />
+          <div>
+            {state.product.thumbnail !== "" && state.product.thumbnail.name}
+          </div>
         </S.InnerContainer>
       </S.Item>
       <S.Item>
