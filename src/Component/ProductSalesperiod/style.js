@@ -29,3 +29,5 @@ export const Box = styled.div`
   flex-direction: column;
   margin : 10px 20px;
 `;
+
+export const RadioBtn = styled.input``;

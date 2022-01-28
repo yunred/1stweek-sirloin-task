@@ -8,15 +8,15 @@ export const ProodctBox = (props) => {
       <Style.TitleBox>{props.name}</Style.TitleBox>
       <Style.ContentsBox>
         <Style.Box>
-          <Style.Input type="radio" />
+          <Style.Input type="radio" name="radiobutton" checked />
           <span>제한없음</span>
         </Style.Box>
         <Style.Box>
-          <Style.Input type="radio" />
+          <Style.Input type="radio" name="radiobutton" />
           <span>미판매</span>
         </Style.Box>
         <Style.Box>
-          <Style.Input type="radio" />
+          <Style.Input type="radio" name="radiobutton" />
           <span>노출 기간 설정</span>
         </Style.Box>
         <Style.Box>

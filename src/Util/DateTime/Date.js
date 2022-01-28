@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import * as Style from "./style";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateRangePicker from "@mui/lab/DateRangePicker";
