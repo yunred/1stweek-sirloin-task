@@ -151,14 +151,17 @@ export const PIContent = (props) => {
   }, [thumbnail]);
 
   useEffect(() => {
+    const newState = { ...state };
+
     if (productImgList.length > 0) {
-      const newState = { ...state };
-      const newItem = productImgList.pop();
-      productImgList.unshift(newItem);
-      newState.product.imgs = productImgList;
+      const target = [...productImgList][0]
+      newState.product.imgs.unshift(target);
       setState(newState);
+      console.log(newState)
+      setProductImgList([]);
     }
-  }, [productImgList]);
+  },[productImgList]);
+
 
   useEffect(() => {
     const idx = handleProductIdx();
@@ -286,17 +289,9 @@ export const PIContent = (props) => {
     return idx;
   };
 
-  const handleImgPop = (item) => {
+  const handleImgPop = (index) => {
     const newState = { ...state };
-    const newArr = newState.product.imgs.filter((el) => {
-      if (el.name !== item.name) return el;
-    });
-    
-    setProductImgList(productImgList.filter(el => {
-      if(el.name !== item.name) return el;
-    }))
-
-    newState.product.imgs = newArr;
+    newState.product.imgs.splice(index,1);
     setState(newState);
   };
 
@@ -498,7 +493,7 @@ export const PIContent = (props) => {
                     {item.name}{" "}
                     <button
                       onClick={() => {
-                        handleImgPop(item);
+                        handleImgPop(index);
                       }}
                     >
                       X
