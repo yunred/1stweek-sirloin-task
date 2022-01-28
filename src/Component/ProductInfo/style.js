@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const ProductInfoContainer = styled.div`
-  border: 1px solid #eee;
   display: flex;
   flex-direction: column;
   width: 75%;
@@ -20,15 +19,13 @@ export const ProductInfoContainer = styled.div`
     padding: 0;
   }
 
-
-  .productInfo-img-btn{
+  .productInfo-img-btn {
     margin-right: 10px;
   }
 `;
 
 export const Title = styled.span`
   width: 160px;
-  border-right: 1px solid #eee;
   min-height: 65px;
   display: flex;
   align-items: center;
@@ -41,7 +38,7 @@ export const ItemContainer = styled.ul`
 
 export const Item = styled.li`
   display: flex;
-  border: 1px solid #eee;
+  border: 0.1em solid rgb(227, 227, 227);
   :not(:last-child) {
     border-bottom: none;
   }
@@ -58,10 +55,10 @@ export const ListContainer = styled.ul`
   overflow: scroll;
   width: ${(props) => props.width};
   border-radius: 4px;
-  border: 1px solid #eee;
 `;
 
-export const ListItem = styled.li``;
+export const ListItem = styled.li`
+`;
 
 export const Tag = styled.li`
   background-color: #ddd;
@@ -74,41 +71,39 @@ export const Tag = styled.li`
 export const Check = styled.input``;
 
 export const InputContainer = styled.div`
+  border: 0.1em solid rgb(227, 227, 227);
+  border-radius: 4px;
+  width: 100%;
+  padding: 4px 6px;
+  height: 60%;
+  align-self: center;
 
-border: 1px solid #eee;
-border-radius: 4px;
-width: 100%;
-padding: 4px 6px;
-height: 60%;
-align-self: center;
-
-input{
-  height: 100%;
-  width: 95%;
-  background: none;
-  outline: none;
-  border: none;
-  font-size: 14px;
-}
-`
+  input {
+    height: 100%;
+    width: 95%;
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 14px;
+  }
+`;
 
 export const ProductContainer = styled.div`
-
-width: 100%;
-display: flex;
-justify-content: space-around;
-
-span{
-  width: 40%;
+  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  justify-content: space-around;
 
-span:nth-child(1){
-  border-right: 1px solid #eee;
-}
-`
+  span {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  span:nth-child(1) {
+    border-right: 1px solid #eee;
+  }
+`;
 
 export const ScrollContainer = styled.div`
   border: 1px solid #eee;
