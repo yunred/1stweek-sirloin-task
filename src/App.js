@@ -6,7 +6,8 @@ import MDdata from "store/MDdata.js";
 import ProductInfo from "Component/ProductInfo";
 import PIdata from "store/PIData";
 
-function App() {
+const App = () => {  
+
   return (
     <div className="App">
       <GlobalStyle />
