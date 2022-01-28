@@ -4,7 +4,6 @@ import Nav from "Component/Nav/Nav";
 import MDOption from "Component/MDOption";
 import MDdata from "store/MDdata.js";
 import ProductInfo from "Component/ProductInfo";
-import PIdata from "store/PIData";
 
 const App = () => {  
 
@@ -14,10 +13,8 @@ const App = () => {
       <Nav />
       <MDdata>
         <MDOption />
-      </MDdata>
-      <PIdata>
         <ProductInfo />
-      </PIdata>
+      </MDdata>
     </div>
   );
 }
