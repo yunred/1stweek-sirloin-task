@@ -1,50 +1,53 @@
-import React,{ createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
 
 export const PDcontext = createContext();
 
 const PDdata = (props) => {
-    const [OptionSetList, setOptionLIst] = useState([]);
-    const [ProductInfoList, setProductInfoLIst] = useState(PIData);
-    
-    const PDdata = {
-        OptionSetData: {
-            state: OptionSetList,
-            setstate: setOptionLIst
-        },
-        PIData: {
-            state: ProductInfoList,
-            setState: setProductInfoLIst
-        }
-    }
+  const [OptionSetList, setOptionLIst] = useState([]);
+  const [ProductInfoList, setProductInfoLIst] = useState(PIData);
 
-    return <PDcontext.Provider value={PDdata}>{props.children}</PDcontext.Provider>
-}
+  const PDdata = {
+    OptionSetData: {
+      state: OptionSetList,
+      setstate: setOptionLIst,
+    },
+    PIData: {
+      state: ProductInfoList,
+      setState: setProductInfoLIst,
+    },
+  };
+
+  return (
+    <PDcontext.Provider value={PDdata}>{props.children}</PDcontext.Provider>
+  );
+};
 
 const PIData = {
-    categoryList:[
-    "카테고리1",
-    "카테고리2",
-    "카테고리3",
-    "카테고리4",
-    "카테고리5",
-    "카테고리6",],
-    filterTagList:[
-    "필터태그1",
-    "필터태그2",
-    "필터태그3",
-    "필터태그4",
-    "필터태그5",
-    "필터태그6",
-    ],
-    product:{
-        category:[],
-        filterTag:[],
-        name:"",
-        description:"",
-        thumbnail:"",
-        imgs:"",
-        stock:"",
-    }
-}
+  categoryList: [
+    { idx: 1, checked: false, content: "카테고리1" },
+    { idx: 2, checked: false, content: "카테고리2" },
+    { idx: 3, checked: false, content: "카테고리3" },
+    { idx: 4, checked: false, content: "카테고리4" },
+    { idx: 5, checked: false, content: "카테고리5" },
+    { idx: 6, checked: false, content: "카테고리6" },
+  ],
+  filterTagList: [
+    { idx: 1, checked: false, content: "필터태그1" },
+    { idx: 2, checked: false, content: "필터태그2" },
+    { idx: 3, checked: false, content: "필터태그3" },
+    { idx: 4, checked: false, content: "필터태그4" },
+    { idx: 5, checked: false, content: "필터태그5" },
+    { idx: 6, checked: false, content: "필터태그6" },
+  ],
+  product: {
+    category: [],
+    filterTag: [],
+    name: "",
+    description: "",
+    thumbnail: "",
+    imgs: "",
+    stock: "",
+  },
+};
 
-export default PDdata
+export default PDdata;

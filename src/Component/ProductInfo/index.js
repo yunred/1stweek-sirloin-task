@@ -1,7 +1,7 @@
 import * as S from "./style";
 import Container from "Component/Container";
 import SelectImg from "Util/SelectImg";
-import React,{ useContext,useEffect } from "react";
+import React,{ useContext,useEffect,useState } from "react";
 import { PDcontext } from "store/PDdata.js";
 
 /*
@@ -109,10 +109,30 @@ export const PIContent = (props) => {
   const context = useContext(PDcontext).PIData;
   const state = context.state;
   const setState = context.setState;
+  const [imgList, setImgList] = useState([]);
 
   useEffect(() => {
     console.log("ProductInfo: ",state)
   }, [state]);
+
+  const handleProductCategory = (e,item) => {
+
+    const index = e.target.value;
+
+    const newState = { ...state }
+
+    if(!newState.categoryList[index].checked){
+      newState.product.category.push(state.categoryList[index])
+      newState.categoryList[index].checked = !newState.categoryList[index].checked;
+    } else {
+      const findIndex = newState.product.category.findIndex( el => el.idx === item.idx )
+      newState.product.category.splice(findIndex,1);
+      newState.categoryList[index].checked = !newState.categoryList[index].checked;
+    }
+
+
+    setState(newState);
+  }
   
   const handleProductDescription = (e) => {
 
@@ -146,20 +166,20 @@ export const PIContent = (props) => {
         <S.Title>카테고리</S.Title>
         <S.InnerContainer width={`500px`}>
           <S.ListContainer width={`50%`}>
-            {category.map((item) => {
+            {state.categoryList.map((item,index) => {
               return (
-                <S.ListItem key={item}>
-                  <S.Check type="checkbox" />
-                  {item}
+                <S.ListItem key={item.idx}>
+                  <S.Check type="checkbox" value={index} onClick={(e)=>{handleProductCategory(e,item)}}/>
+                  {item.content}
                 </S.ListItem>
               );
             })}
           </S.ListContainer>
           <S.ListContainer width={`30%`}>
-            {selectedCategory.map((item) => {
+            {state.product.category.map((item) => {
               return (
-                <S.Tag key={item}>
-                  {item}
+                <S.Tag key={item.idx}>
+                  {item.content}
                   <button>X</button>
                 </S.Tag>
               );
@@ -208,7 +228,7 @@ export const PIContent = (props) => {
       <S.Item>
         <S.Title>상품 썸네일</S.Title>
         <S.InnerContainer>
-          <SelectImg className="productInfo-img-btn" />
+          <SelectImg />
           <div>이미지 파일명.jpg</div>
         </S.InnerContainer>
       </S.Item>
@@ -218,9 +238,9 @@ export const PIContent = (props) => {
           이미지
         </S.Title>
         <S.InnerContainer>
-          <SelectImg className="productInfo-img-btn" />
+          <SelectImg/>
           <S.ListContainer>
-            {imgs.map((item) => {
+            {state.product.imgs.length > 0 && state.product.imgs.map((item) => {
               return <S.ListItem key={item}>{item}</S.ListItem>;
             })}
           </S.ListContainer>
@@ -235,31 +255,5 @@ export const PIContent = (props) => {
     </S.ItemContainer>
   );
 };
-
-
-const category = [
-  "카테고리1",
-  "카테고리2",
-  "카테고리3",
-  "카테고리4",
-  "카테고리5",
-  "카테고리6",
-];
-
-const selectedCategory = [
-  "선택한 카테고리1",
-  "선택한 카테고리2",
-  "선택한 카테고리3",
-  "선택한 카테고리4",
-  "선택한 카테고리5",
-];
-
-const imgs = [
-  "이미지1.jpg",
-  "이미지2.jpg",
-  "이미지3.jpg",
-  "이미지4.jpg",
-  "이미지5.jpg",
-];
 
 export default React.memo(ProductInfo);
