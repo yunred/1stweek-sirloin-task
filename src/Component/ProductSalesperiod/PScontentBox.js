@@ -1,19 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import * as Style from "./style";
 import DateTime from "Util/DateTime";
+import { PDcontext } from "store/PDdata.js";
 
 export const ProodctBox = (props) => {
-  const [state, setState] = useState("");
-  const [event, setEvent] = useState("");
-
-  const toDay = new Date();
-  const selectDay = state[0];
-  console.log(selectDay);
-
-  const handleChange = (event) => {
-    if (toDay.getDate() <= selectDay)
-      return setEvent({ title: event.target.value });
-  };
+  const context = useContext(PDcontext).PScontentBox;
+  const state = context.state;
+  const setState = context.setState;
+  console.log(state);
 
   return (
     <Style.ProductListContainer>
@@ -33,12 +27,7 @@ export const ProodctBox = (props) => {
           <span>미판매</span>
         </Style.Box>
         <Style.Box>
-          <Style.Input
-            type="radio"
-            name="host_chk_first"
-            value="third"
-            handleChange={handleChange}
-          />
+          <Style.Input type="radio" name="host_chk_first" value="third" />
           <span>노출 기간 설정</span>
         </Style.Box>
         <Style.Box>

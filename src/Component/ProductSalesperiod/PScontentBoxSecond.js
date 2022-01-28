@@ -1,19 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import * as Style from "./style";
 import DateTime from "Util/DateTime";
+import { PDcontext } from "store/PDdata.js";
 
 export const ProodctBoxSecond = (props) => {
-  const [state, setState] = useState("");
-  const [event, setEvent] = useState("");
-
-  const toDay = new Date();
-  const selectDay = state[0];
-  console.log(selectDay);
-
-  const handleChange = (event) => {
-    if (toDay.getDate() <= selectDay)
-      return setEvent({ title: event.target.value });
-  };
+  const context = useContext(PDcontext).PScontentBoxSecond;
+  const state = context.state;
+  const setState = context.setState;
+  console.log(state);
 
   return (
     <Style.ProductListContainer>
