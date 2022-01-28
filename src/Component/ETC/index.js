@@ -5,20 +5,20 @@ import Toggle from 'Util/Toggle';
 import * as S from './style.js';
 
 
-const PDMheader = () => {
+const ETCheader = () => {
     return(
-        <S.Header>상품 혜택 허용 결정</S.Header>
+        <S.Header>기타 설정</S.Header>
     )
 }
 
-const PDMContent = () => {
-    const context = useContext(PDcontext).PDMileage;
+const ETContent = () => {
+    const context = useContext(PDcontext).ETC;
     const state = context.state;
     const setState = context.setState;
 
     return(
         <S.Warpper>
-            <S.Title>마일리지 적립</S.Title>
+            <S.Title>감사카드 제공</S.Title>
             <S.Content>
                 <Toggle state={state} setState={setState}/>
             </S.Content>
@@ -26,20 +26,17 @@ const PDMContent = () => {
     )
 }
 
-const PDMileage = () => {
-    const context = useContext(PDcontext).PDMileage;
-    const state = context.state;
-    const setState = context.setState;
+const ETC = () => {
     return(
         <Container
         ContainerHeader = {
-            <PDMheader />
+            <ETCheader />
         } 
         ContainerContent = {
-            <PDMContent/>
+            <ETContent/>
         }
         />
     )
 }
 
-export default PDMileage
+export default ETC
