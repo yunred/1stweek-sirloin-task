@@ -11,6 +11,9 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 const DateTime = () => {
   const [value, setValue] = useState([null, null]);
 
+  // const convertStartDate = startDate.format("YYYY-MM-DD");
+  // const convertEndDate = endDate.format("YYYY-MM-DD");
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DateRangePicker
@@ -19,13 +22,20 @@ const DateTime = () => {
         mask="____/__/__ __:__"
         onChange={(newValue) => setValue(newValue)}
         renderInput={(startProps, endProps) => (
-          <>
-            <Style.Input ref={startProps.inputRef} {...startProps.inputProps} />
-            <Style.IconButton icon={faChevronDown} />
+          <Style.Calender>
+            <div>
+              <Style.Input
+                ref={startProps.inputRef}
+                {...startProps.inputProps}
+              />
+              <Style.IconButton icon={faChevronDown} />
+            </div>
             <Box sx={{ mx: 0.1 }}> &nbsp;&nbsp;&nbsp;&nbsp; ~</Box>
-            <Style.Input ref={endProps.inputRef} {...endProps.inputProps} />
-            <Style.IconButton icon={faChevronDown} />
-          </>
+            <div>
+              <Style.Input ref={endProps.inputRef} {...endProps.inputProps} />
+              <Style.IconButton icon={faChevronDown} />
+            </div>
+          </Style.Calender>
         )}
       />
     </LocalizationProvider>

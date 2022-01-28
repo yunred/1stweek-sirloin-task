@@ -1,5 +1,6 @@
 import * as Style from "./style";
 import DateTime from "Util/DateTime";
+// import Date from "Util/DateTime/Date";
 
 export const ProodctBox = (props) => {
   return (
@@ -20,6 +21,7 @@ export const ProodctBox = (props) => {
         </Style.Box>
         <Style.Box>
           <DateTime />
+          {/* <Date /> */}
         </Style.Box>
       </Style.ContentsBox>
     </Style.ProductListContainer>

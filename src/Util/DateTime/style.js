@@ -10,3 +10,7 @@ export const IconButton = styled(FontAwesomeIcon)`
   position: relative;
   top: 3px;
 `;
+
+export const Calender = styled.div`
+  display: flex;
+`;
