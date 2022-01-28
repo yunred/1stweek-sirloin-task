@@ -110,7 +110,7 @@ export const PIContent = (props) => {
   const state = context.state;
   const setState = context.setState;
   const [filterTagData, setFilterTagData] = useState();
-  const [imgList, setImgList] = useState([]);
+  const [productImgList, setProductImgList] = useState([]);
   const [thumbnail, setThumbnail] = useState("");
   const [openFilterBox, setOpenFilterBox] = useState(false);
   const [filterTagInput, setFilterTagInput] = useState("");
@@ -133,6 +133,15 @@ export const PIContent = (props) => {
       setState(newState);
     }
   }, [thumbnail]);
+
+  useEffect(()=>{
+    if(productImgList.length > 0){
+      const newState = { ...state };
+      newState.product.imgs = productImgList;
+      setState(newState);
+    }
+
+  },[productImgList])
 
   const handleProductCategory = (e, item) => {
     const index = e.target.value;
@@ -223,10 +232,6 @@ export const PIContent = (props) => {
     setState(newState);
   };
 
-  const handleProductImg = () => {
-    const newState = { ...state };
-  };
-
   return (
     <S.ItemContainer>
       <S.Item>
@@ -253,7 +258,7 @@ export const PIContent = (props) => {
               return (
                 <S.Tag key={item.idx}>
                   {item.content}
-                  <button>X</button>
+                  <button onClick={(e)=>{}}>X</button>
                 </S.Tag>
               );
             })}
@@ -375,11 +380,11 @@ export const PIContent = (props) => {
           이미지
         </S.Title>
         <S.InnerContainer>
-          <SelectImg />
+          <SelectImg imgList={productImgList} imgSetter={setProductImgList}/>
           <S.ListContainer>
             {state.product.imgs.length > 0 &&
               state.product.imgs.map((item) => {
-                return <S.ListItem key={item}>{item}</S.ListItem>;
+                return <S.ListItem key={item.name}>{item.name}</S.ListItem>;
               })}
           </S.ListContainer>
         </S.InnerContainer>

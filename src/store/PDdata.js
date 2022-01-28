@@ -45,7 +45,7 @@ const PIData = {
     name: "",
     description: "",
     thumbnail: "",
-    imgs: "",
+    imgs: [],
     stock: "",
   },
 };
