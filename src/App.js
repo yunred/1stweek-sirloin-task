@@ -5,8 +5,10 @@ import ProductSalesperiod from "./Component/ProductSalesperiod";
 import PDOption from "Component/PDoption";
 import PDdata from "store/PDdata.js";
 import ProductInfo from "Component/ProductInfo";
+import Toggle from "Util/Toggle";
 
-const App = () => {
+const App = () => {  
+  const [toggle, setoggle] = useState(false);
   return (
     <div className="App">
       <GlobalStyle />
