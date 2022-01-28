@@ -1,12 +1,13 @@
 import * as S from 'Util/Toggle/style.js';
 
 const Toggle = (props) => {
-    const {state, setstate} = props;
+    const {state, setState} = props;
+    console.log(state);
     return(
     <>
     <S.CheckBoxWrapper>
-        <S.CheckBox value={state} id='checkbox' type='checkbox'/>
-        <S.CheckBoxLabel htmlFor='checkbox' onClick={() => {setstate(!state)}}/>
+        <S.CheckBox checked={state} id='checkbox' type='checkbox'/>
+        <S.CheckBoxLabel htmlFor='checkbox' onClick={() => {setState(!state)}}/>
     </S.CheckBoxWrapper>
     </>
     )
