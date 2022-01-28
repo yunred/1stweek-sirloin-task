@@ -8,6 +8,7 @@ import ProductInfo from 'Component/ProductInfo';
 import ProductInfoNotice from 'Component/ProductInfoNotice';
 import ProductDelivery from 'Component/ProductDelivery';
 import PDMileage from 'Component/PDMileage';
+import ProductImage from 'Component/ProductImage';
 import ETC from 'Component/ETC';
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
       <Nav />
       <Main>
         <PDdata>
+          <ProductImage/>
           <ProductSalesperiod />
           <ProductInfo />
           <PDOption/>
