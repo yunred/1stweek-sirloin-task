@@ -107,18 +107,38 @@ export const PIHeader = (props) => {
 };
 
 export const PIContent = (props) => {
-  const context = useContext(PDcontext).PIData;
-  const state = context.state;
-  const setState = context.setState;
+  const PIcontext = useContext(PDcontext).PIData;
+  const optionContext = useContext(PDcontext).OptionSetData;
+  const state = PIcontext.state;
+  const setState = PIcontext.setState;
+  const optionState = optionContext.state;
   const [filterTagData, setFilterTagData] = useState();
   const [productImgList, setProductImgList] = useState([]);
   const [thumbnail, setThumbnail] = useState("");
   const [openFilterBox, setOpenFilterBox] = useState(false);
   const [filterTagInput, setFilterTagInput] = useState("");
+  const [stock,setStock] = useState(0);
 
   useEffect(() => {
     console.log("ProductInfo: ", state);
   }, [state]);
+
+  useEffect(()=>{
+
+    let stock = 0;
+
+    if(optionState.length !== 0){
+      // console.log(optionState[0].optionList[0].optionValue)
+      for(let i of optionState){
+        for(let j of i.optionList){
+          j.optionValue[2] !== '' ? stock += parseInt(j.optionValue[2]) : stock+=parseInt(0);
+        }
+      }
+    }
+
+    setStock(stock);
+
+  },[optionState])
 
   useEffect(() => {
     const filterTagCopyData = [...state.filterTagList];
@@ -449,7 +469,7 @@ export const PIContent = (props) => {
       <S.Item>
         <S.Title>상품 총 재고</S.Title>
         <S.InnerContainer>
-          <span>NN개</span>
+          <span>{stock}개</span>
         </S.InnerContainer>
       </S.Item>
     </S.ItemContainer>
