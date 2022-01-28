@@ -26,3 +26,8 @@ export const H3 = styled.h3`
   text-align: center;
   height: 25em;
 `;
+
+export const OptionSet = styled.div`
+    border: 0.5em, solid, rgb(227,227,227); 
+    margin: 1em;
+`
