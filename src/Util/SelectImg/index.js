@@ -5,6 +5,11 @@ const SelectImg = (props) => {
   const imgSetter = props.imgSetter;
   const imgInput = useRef();
 
+  const handleImage = (e) => {
+    imgSetter([...imgList, e.target.files[0]])
+    e.target.value = '';
+  }
+
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <S.Button
@@ -16,7 +21,7 @@ const SelectImg = (props) => {
         type={"file"}
         accept="image/*"
         onChange={useCallback((e) =>
-          imgSetter([...imgList, e.target.files[0]])
+          handleImage(e)
         )}
         ref={imgInput}
       ></S.Input>

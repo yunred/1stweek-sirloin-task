@@ -28,6 +28,9 @@ export const ProductInfoContainer = styled.div`
   .filterBox {
     flex-direction: column;
   }
+  
+  .filterContainer{
+  }
 
   .imgBox{
     width: 100%;
@@ -185,11 +188,21 @@ export const FilterTagBox = styled.div`
   overflow-y: scroll;
   padding: 6px 8px;
 
+  & .selectedFilterTag{
+    animation: up 0.5 ease;
+  }
+  
+
+  &.filterContainer{
+    animation: down 0.5s ease;
+  }
+  
   .filterList {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, auto));
     grid-row-gap: 10px;
     overflow-y: scroll;
+    animation: up 0.5s ease;
     li {
       margin-left: 10px;
       padding: 6px 8px;
@@ -203,4 +216,27 @@ export const FilterTagBox = styled.div`
       cursor: pointer;
     }
   }
+
+
+  @keyframes down {
+    0%{
+      transform: translateY(-300px);
+    }
+    100%{
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes up {
+    0%{
+      transform: translateY(300px);
+    }
+    100%{
+      transform: translateY(0);
+    }
+  }
 `;
+
+export const OverFlowContainer = styled.div`
+overflow: hidden;
+`
