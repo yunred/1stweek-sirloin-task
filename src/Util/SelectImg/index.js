@@ -1,5 +1,5 @@
-import React, { useCallback, useRef } from "react";
-import * as S from "Util/SelectImg/style.js";
+import React, { useCallback, useRef} from 'react';
+import * as S from 'Util/SelectImg/style.js';
 const SelectImg = (props) => {
   const imgList = props.imgList;
   const imgSetter = props.imgSetter;
