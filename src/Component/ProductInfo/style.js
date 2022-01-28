@@ -3,11 +3,8 @@ import styled from "styled-components";
 export const ProductInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 75%;
   justify-content: center;
-  padding: 20px;
-  margin: 20px auto;
-  font-size: 1.3rem;
+  margin: 0.5em;
 
   h4 {
     margin-top: 0;
