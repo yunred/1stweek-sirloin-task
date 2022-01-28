@@ -2,8 +2,8 @@ import { useState } from "react";
 import GlobalStyle from "Style/GlobalStyle";
 // import Nav from "Component/Nav";
 import ProductSalesperiod from "./Component/ProductSalesperiod";
-import MDOption from "Component/MDOption";
-import PDdata from "store/PDdata";
+import PDOption from "Component/PDoption";
+import PDdata from "store/PDdata.js";
 import ProductInfo from "Component/ProductInfo";
 
 const App = () => {
@@ -13,7 +13,7 @@ const App = () => {
       {/* <Nav /> */}
       <ProductSalesperiod />
       <PDdata>
-        <MDOption />
+        <PDOption />
         <ProductInfo />
       </PDdata>
     </div>
