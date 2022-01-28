@@ -2,12 +2,13 @@ import React, {useState, useContext} from 'react';
 import { PDcontext } from 'store/PDdata.js';
 import Container from "Component/Container";
 import Toggle from 'Util/Toggle';
-//import * as S from '/Compnent/PDMileage/style.js';
+import * as S from './style.js';
+import { Title } from 'Component/ProductInfo/style.js';
 
 
 const PDMheader = () => {
     return(
-        <h2>상품 혜택 허용 결정</h2>
+        <S.Header>상품 혜택 허용 결정</S.Header>
     )
 }
 
@@ -17,7 +18,12 @@ const PDMContent = () => {
     const setState = context.setState;
 
     return(
-        <Toggle state={state} setState={setState}/>
+        <S.Warpper>
+            <S.Title>마일리지 적립</S.Title>
+            <S.Content>
+                <Toggle state={state} setState={setState}/>
+            </S.Content>
+        </S.Warpper>
     )
 }
 
