@@ -5,6 +5,7 @@ export const ProductImageContainer = styled.div`
   height: 400px;
   display: flex;
   flex-direction: column;
+  font-weight: 600;
 
   h4 {
     margin: 0 0 0 10px;
@@ -25,6 +26,15 @@ export const ImageContainer = styled.ul`
   margin: 0 0 0 20px;
   overflow-y: scroll;
   list-style: none;
+
+  button{
+      border-radius: 50px;
+      border:1px solid black;
+      width: 25px;
+      height: 25px;
+      margin-left: 10px;
+      cursor: pointer;
+  }
 
   &::-webkit-scrollbar {
     border-radius: 6px;

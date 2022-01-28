@@ -291,6 +291,11 @@ export const PIContent = (props) => {
     const newArr = newState.product.imgs.filter((el) => {
       if (el.name !== item.name) return el;
     });
+    
+    setProductImgList(productImgList.filter(el => {
+      if(el.name !== item.name) return el;
+    }))
+
     newState.product.imgs = newArr;
     setState(newState);
   };
@@ -487,9 +492,9 @@ export const PIContent = (props) => {
           <SelectImg imgList={productImgList} imgSetter={setProductImgList} />
           <S.ListContainer className="imgBox">
             {state.product.imgs.length > 0 &&
-              state.product.imgs.map((item) => {
+              state.product.imgs.map((item,index) => {
                 return (
-                  <S.ListItem key={item.name}>
+                  <S.ListItem key={index}>
                     {item.name}{" "}
                     <button
                       onClick={() => {

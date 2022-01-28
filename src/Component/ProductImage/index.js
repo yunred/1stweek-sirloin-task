@@ -8,8 +8,8 @@ import { PDcontext } from "store/PDdata.js";
 /*
 
 props = {
-  productIntroduceImg:[],
-  productBuyerImg:[],
+  productIntroduceImg:[], // Array
+  productBuyerImg:[], // Array
 }
 
 */
@@ -24,22 +24,27 @@ const PDIntroduceContent = () => {
   const state = PDImageContext.state;
   const setState = PDImageContext.setState;
 
+  useEffect(() => {
+    const newState = { ...state };
 
-  useEffect(()=>{
-    const newState = {...state}
-
-    if(PDIntroduceImg.length > 0){
+    if (PDIntroduceImg.length > 0) {
       const newItem = PDIntroduceImg.pop();
       PDIntroduceImg.unshift(newItem);
-    } 
+    }
     newState.productIntroduceImg = PDIntroduceImg;
     setState(newState);
-    
-  },[PDIntroduceImg])
+  }, [PDIntroduceImg]);
 
-  useEffect(()=>{
-    console.log("PDImage: ",state)
-  },[state])
+  useEffect(() => {
+    console.log("PDImage: ", state);
+  }, [state]);
+
+  const handlePop = (index) => {
+    const newState = {...state};
+    const newArr = PDIntroduceImg.splice(index,1);
+    newState.productIntroduceImg = newArr;
+    setState(newState);
+  }
 
   return (
     <S.InnerContainer>
@@ -47,7 +52,12 @@ const PDIntroduceContent = () => {
       <S.ImageContainer>
         {state.productIntroduceImg.length > 0 &&
           state.productIntroduceImg.map((item, index) => {
-            return <S.ImageItem key={index}>{item.name}</S.ImageItem>;
+            return (
+              <S.ImageItem key={index}>
+                {item.name}
+                <button onClick={()=>{handlePop(index)}}>X</button>
+              </S.ImageItem>
+            );
           })}
       </S.ImageContainer>
     </S.InnerContainer>
@@ -64,10 +74,38 @@ const PDBuyerContent = () => {
   const state = PDImageContext.state;
   const setState = PDImageContext.setState;
 
+  useEffect(() => {
+    const newState = { ...state };
+
+    if (PDBuyerImg.length > 0) {
+      const newItem = PDBuyerImg.pop();
+      PDBuyerImg.unshift(newItem);
+    }
+    newState.productBuyerImg = PDBuyerImg;
+    setState(newState);
+  }, [PDBuyerImg]);
+
+  const handlePop = (index) => {
+    const newState = {...state};
+    const newArr = PDBuyerImg.splice(index,1);
+    newState.productBuyerImg = newArr;
+    setState(newState);
+  }
+
   return (
     <S.InnerContainer>
       <SelectImg imgList={PDBuyerImg} imgSetter={setPDBuyerImg} />
-      <S.ImageContainer></S.ImageContainer>
+      <S.ImageContainer>
+        {state.productBuyerImg.length > 0 &&
+          state.productBuyerImg.map((item,index) => {
+            return (
+              <S.ImageItem key={index}>
+                {item.name}
+                <button onClick={()=>{handlePop(index)}}>X</button>
+              </S.ImageItem>
+            );
+          })}
+      </S.ImageContainer>
     </S.InnerContainer>
   );
 };

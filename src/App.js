@@ -18,10 +18,10 @@ const App = () => {
       <Nav />
       <Main>
         <PDdata>
-          <ProductImage/>
           <ProductSalesperiod />
           <ProductInfo />
           <PDOption/>
+          <ProductImage/>
           <ProductInfoNotice/>
           <ProductDelivery/>
           <PDMileage/>
