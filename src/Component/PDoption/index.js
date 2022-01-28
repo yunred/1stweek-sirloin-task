@@ -70,21 +70,30 @@ const PDOContent = () => {
 }
 
 const OptionSet = (props) => {
+    const index = props.index
     const context = useContext(PDcontext).OptionSetData;
     const state = context.state;
     const setstate = context.setstate;
     const [imgList, setImgList] = useState([]);
     useEffect(()=>{
         const newstate = [...state];
-        newstate[props.index].optionImg = imgList;
+        newstate[index].optionImg = imgList;
         setstate(newstate);
     }, [imgList])
 
     return(
-        <div>
-            {props.index}
+        <>
+        <S.Buttonholder>
+            <S.DelOptionSet onClick={()=>{
+                const newstate = [...state];
+                newstate.splice(index, 1);
+                setstate(newstate);
+                }}>삭제</S.DelOptionSet>
+        </S.Buttonholder>
+        <S.Imgplaceholder>
             <SelectImg imgList={imgList} imgSetter={setImgList}/>
-        </div>
+        </S.Imgplaceholder>
+        </>
     )
     
 }

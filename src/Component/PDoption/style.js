@@ -31,3 +31,24 @@ export const OptionSetContainer = styled.div`
     border: 0.5em, solid, rgb(227,227,227); 
     margin: 1em;
 `
+export const Imgplaceholder = styled.div`
+  text-align: center;
+  height: 10em;
+  margin: 0.5em;
+  padding-top: 5em;
+  background: rgb(220,220,220);
+  border: 1px solid rgb(130,130,130);
+  border-radius: 5px;
+`
+export const DelOptionSet = styled.button`
+  color: red;
+  background: none;
+  border: 1px solid red;
+  width: 5em;
+  height: 2em;
+  border-radius: 5px;
+`
+export const Buttonholder = styled.div`
+  margin: 0.5em;
+  text-align: right;
+`
