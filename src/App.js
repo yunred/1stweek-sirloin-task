@@ -30,11 +30,10 @@ const App = () => {
 };
 export default App;
 
-
 const Main = styled.div`
   margin-left: 10vw;
   padding: 0.5em;
   padding-top: 5vh;
   border: 0.1em solid rgb(200, 200, 200);
   border-radius: 5px;
-  `
+`;
