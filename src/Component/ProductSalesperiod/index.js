@@ -5,7 +5,9 @@ import * as Style from "./style";
 export const PSheader = () => {
   return (
     <>
-      <Style.ProductContainer>노출 및 판매기간 설정</Style.ProductContainer>
+      <Style.ProductContainer>
+        <h3>노출 및 판매기간 설정</h3>
+      </Style.ProductContainer>
     </>
   );
 };

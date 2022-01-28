@@ -124,7 +124,8 @@ export const InputContainer = styled.div`
   border-radius: 4px;
   width: 100%;
   height: 50px;
-  align-self: center;
+  display: flex;
+  align-items: center;
 
   input {
     height: 100%;
@@ -141,6 +142,7 @@ export const InputContainer = styled.div`
     border-radius:5px;
     width: 70px;
     height: 80%;
+    font-weight: 600;
   }
 `;
 
@@ -184,8 +186,10 @@ export const FilterTagBox = styled.div`
   padding: 6px 8px;
 
   .filterList {
-    display: flex;
-    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, auto));
+    grid-row-gap: 10px;
+    overflow-y: scroll;
     li {
       margin-left: 10px;
       padding: 6px 8px;
