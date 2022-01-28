@@ -74,13 +74,6 @@ const OptionSet = (props) => {
     const context = useContext(PDcontext).OptionSetData;
     const state = context.state;
     const setstate = context.setstate;
-    const [imgList, setImgList] = useState([]);
-    useEffect(()=>{
-        const newstate = [...state];
-        newstate[index].optionImg = imgList;
-        setstate(newstate);
-    }, [imgList])
-
     return(
         <>
         <S.Buttonholder>
@@ -90,12 +83,32 @@ const OptionSet = (props) => {
                 setstate(newstate);
                 }}>삭제</S.DelOptionSet>
         </S.Buttonholder>
-        <S.Imgplaceholder>
-            <SelectImg imgList={imgList} imgSetter={setImgList}/>
-        </S.Imgplaceholder>
+        <PDthumbnail index = {index}/>
         </>
     )
     
+}
+
+const PDthumbnail = (props) => {
+    const index = props.index
+    const context = useContext(PDcontext).OptionSetData;
+    const state = context.state;
+    const setstate = context.setstate;
+    const [imgList, setImgList] = useState([]);
+    useEffect(()=>{
+        const newstate = [...state];
+        newstate[index].optionImg = imgList;
+        setstate(newstate);
+    }, [imgList])
+
+    return(state[index].optionImg.length === 0?
+        <S.Imgplaceholder>
+            <SelectImg imgList={imgList} imgSetter={setImgList}/>
+        </S.Imgplaceholder>:
+        <S.Imgholder>
+            <S.OptionThumbnail src={URL.createObjectURL(state[index].optionImg[0])}/>
+        </S.Imgholder>
+    )
 }
 
 const PDoption = () => {

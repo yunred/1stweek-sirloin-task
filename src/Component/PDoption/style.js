@@ -52,3 +52,17 @@ export const Buttonholder = styled.div`
   margin: 0.5em;
   text-align: right;
 `
+
+export const Imgholder = styled.div`
+  text-align: center;
+  height: 14.5em;
+  margin: 0.5em;
+  padding-top: 0.5em;
+  background: rgb(220,220,220);
+  border: 1px solid rgb(130,130,130);
+  border-radius: 5px;
+`
+
+export const OptionThumbnail = styled.img`
+  height: 90%;
+`
