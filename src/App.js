@@ -6,6 +6,7 @@ import PDOption from 'Component/PDoption';
 import PDdata from 'store/PDdata.js';
 import ProductInfo from 'Component/ProductInfo';
 import ProductInfoNotice from 'Component/ProductInfoNotice';
+import ProductDelivery from 'Component/ProductDelivery';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <PDOption />
         <ProductInfo />
         <ProductInfoNotice />
+        <ProductDelivery />
       </PDdata>
     </div>
   );
