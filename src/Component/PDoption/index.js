@@ -93,7 +93,6 @@ const OptionSet = (props) => {
           <Option
             OSidx={index}
             OPidx={optionidx}
-            OptionData={state[index].optionList[optionidx]}
           />
         </S.OptionHolder>
       ))}
@@ -138,13 +137,14 @@ const PDthumbnail = (props) => {
 };
 
 const Option = (props) => {
-  const { OSidx, OPidx, OptionData } = props;
-  console.log(OptionData);
-  const optionValue = OptionData.optionValue;
   const context = useContext(PDcontext).OptionSetData;
   const state = context.state;
   const setstate = context.setstate;
-  const [inputData, setInputData] = useState(["", "", "", "비과세"]);
+  const { OSidx, OPidx} = props;
+  const OptionData= state[OSidx].optionList[OPidx]
+  console.log(OptionData);
+  const optionValue = OptionData.optionValue;
+  const [inputData, setInputData] = useState(optionValue);
   const HandleChange = (e) => {
     const { value, name } = e.target;
     const newinputdata = [...inputData];
