@@ -29,8 +29,6 @@ PIOrder = {
   category: '',
   moreinfo: [],
 }
-
-
 자세히 ===================
   PIOrder = [
     {
@@ -56,7 +54,6 @@ PIOrder = {
     },
     ...
   ]
-
 */
 const PINoticeContent = () => {
   const orderContext = useContext(PDcontext).PIOrder;
