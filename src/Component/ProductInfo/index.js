@@ -121,17 +121,7 @@ export const PIContent = (props) => {
   useEffect(() => {
     const filterTagCopyData = [...state.filterTagList];
 
-    filterTagCopyData.sort((a,b)=>{
-        let x = a.content;
-        let y = b.content;
-        
-        if(x < y) return -1;
-        if(x > y) return 1;
-        return 0;
-
-      })
-
-    setFilterTagData(filterTagCopyData);
+    setFilterTagData(searchResultSort(filterTagCopyData));
   }, [state.filterTagList]);
 
   const handleProductCategory = (e, item) => {
@@ -184,9 +174,7 @@ export const PIContent = (props) => {
       })
       : filterTagCopyData;
 
-      console.log(filterTagCopyData)
-      
-      setFilterTagData(filterTagCopyData);
+      setFilterTagData(searchResultSort(filterTagCopyData));
   }
 
   const handleKeyUp = (e) => {
@@ -194,6 +182,22 @@ export const PIContent = (props) => {
     if(e.key === 'Enter'){
       handleSearch();
     }
+  }
+
+  const searchResultSort = (arr) => {
+
+    arr.sort((a,b)=>{
+      let x = a.content;
+      let y = b.content;
+      
+      if(x < y) return -1;
+      if(x > y) return 1;
+      return 0;
+
+    })
+
+    return arr
+
   }
 
   const handleProductDescription = (e) => {
