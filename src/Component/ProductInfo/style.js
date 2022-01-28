@@ -19,8 +19,8 @@ export const ProductInfoContainer = styled.div`
     padding: 0;
   }
 
-  .productInfo-img-btn {
-    margin-right: 10px;
+  .filterBox {
+    flex-direction: column;
   }
 `;
 
@@ -57,8 +57,7 @@ export const ListContainer = styled.ul`
   border-radius: 4px;
 `;
 
-export const ListItem = styled.li`
-`;
+export const ListItem = styled.li``;
 
 export const Tag = styled.li`
   background-color: #ddd;
@@ -75,7 +74,7 @@ export const InputContainer = styled.div`
   border-radius: 4px;
   width: 100%;
   padding: 4px 6px;
-  height: 60%;
+  height: 50px;
   align-self: center;
 
   input {
@@ -117,5 +116,26 @@ export const ScrollContainer = styled.div`
     background: none;
     outline: none;
     border: none;
+  }
+`;
+
+export const FilterTagBox = styled.div`
+  border-radius: 10px;
+  width: 100%;
+  height: 200px;
+  overflow-y: scroll;
+  padding: 6px 8px;
+
+  .filterList {
+    display: flex;
+    li {
+      margin-left: 10px;
+      padding: 6px 8px;
+      background-color: red;
+      width: 100px;
+      height: 30px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
   }
 `;
