@@ -1,4 +1,5 @@
 import * as Style from "./style";
+import DateTime from "Util/DateTime";
 
 export const ProodctBox = (props) => {
   return (
@@ -16,6 +17,9 @@ export const ProodctBox = (props) => {
         <Style.Box>
           <Style.Input type="radio" />
           <span>노출 기간 설정</span>
+        </Style.Box>
+        <Style.Box>
+          <DateTime />
         </Style.Box>
       </Style.ContentsBox>
     </Style.ProductListContainer>

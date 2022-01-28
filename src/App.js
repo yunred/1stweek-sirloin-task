@@ -1,25 +1,22 @@
 import { useState } from "react";
 import GlobalStyle from "Style/GlobalStyle";
-import Nav from "Component/Nav";
+// import Nav from "Component/Nav";
 import ProductSalesperiod from "./Component/ProductSalesperiod";
 import MDOption from "Component/MDOption";
 import MDdata from "store/MDdata.js";
 import ProductInfo from "Component/ProductInfo";
 
-function App() {
-  const [productInfoList, PISetter] = useState([]);
-
+const App = () => {
   return (
     <div className="App">
       <GlobalStyle />
-      <Nav />
+      {/* <Nav /> */}
       <ProductSalesperiod />
       <MDdata>
         <MDOption />
+        <ProductInfo />
       </MDdata>
-      <ProductInfo productInfoList={productInfoList} PISetter={PISetter} />
     </div>
   );
-}
-
+};
 export default App;
