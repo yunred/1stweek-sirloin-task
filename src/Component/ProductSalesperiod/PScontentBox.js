@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as Style from "./style";
 import DateTime from "Util/DateTime";
 // import Date from "Util/DateTime/Date";
+// import "react-datepicker/dist/react-datepicker.css";
 
 export const ProodctBox = (props) => {
   const [state, setState] = useState("");
@@ -24,7 +25,7 @@ export const ProodctBox = (props) => {
         </Style.Box>
         <Style.Box>
           <DateTime state={state} setState={setState} />
-          {/* <Date /> */}
+          {/* <Date state={state} setState={setState} /> */}
         </Style.Box>
       </Style.ContentsBox>
     </Style.ProductListContainer>

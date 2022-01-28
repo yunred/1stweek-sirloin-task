@@ -1,37 +1,34 @@
 import React, { useState, useEffect } from "react";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DateRangePicker from "@mui/lab/DateRangePicker";
+import DatePicker from "react-datepicker";
+import styled from "styled-components";
 
-// const dateFormat = dayjs(date).format("YYYY-MM-DD");
+// import Date from "Util/DateTime/Date";
+// import "react-datepicker/dist/react-datepicker.css"; 함께 import
 
-const Date = (props) => {
-  const [value, setValue] = useState([null, null]);
+const Calendar = (props) => {
+  const [startDate, setStartDate] = useState();
   const { state, setState } = props;
 
   useEffect(() => {
-    setState(value);
-  }, [value]);
+    setState(startDate);
+  }, [startDate]);
+
+  console.log(state);
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DateRangePicker
-        value={value}
-        inputFormat="yyyy/MM/dd"
-        mask="____/__/__"
-        onChange={(newValue) => setValue(newValue)}
-        renderInput={(startProps, endProps) => (
-          <>
-            <input
-              ref={startProps.inputRef}
-              {...startProps.inputProps}
-              style={{ width: "80px" }}
-            />
-          </>
-        )}
-      />
-    </LocalizationProvider>
+    <MyDatePicker
+      dateFormat="yyyy.MM.dd"
+      selected={startDate}
+      closeOnScroll={true}
+      onChange={(date) => setStartDate(date)}
+      placeholderText="YYYY.MM.DD"
+    />
   );
 };
 
-export default Date;
+export default Calendar;
+
+const MyDatePicker = styled(DatePicker)`
+  width: 100px;
+  height: 20px;
+`;

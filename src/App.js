@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import GlobalStyle from 'Style/GlobalStyle';
+import styled from "styled-components";
+import GlobalStyle from "Style/GlobalStyle";
 import Nav from "Component/Nav";
 import ProductSalesperiod from './Component/ProductSalesperiod';
 import PDOption from 'Component/PDoption';
@@ -10,8 +10,7 @@ import ProductDelivery from 'Component/ProductDelivery';
 import PDMileage from 'Component/PDMileage';
 import ETC from 'Component/ETC';
 
-
-const App = () => {  
+const App = () => {
   return (
     <div className="App">
       <GlobalStyle />
