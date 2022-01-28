@@ -6,6 +6,7 @@ const PDdata = props => {
   const [OptionSetList, setOptionLIst] = useState([]);
   const [ProductInfoList, setProductInfoLIst] = useState(PIData);
   const [ProductInfoOrder, setProductInfoOrder] = useState([PIOrder]);
+  const [PDMileage, setPDMileage] = useState(true);
   const PDdata = {
     OptionSetData: {
       state: OptionSetList,
@@ -19,6 +20,10 @@ const PDdata = props => {
       state: ProductInfoOrder,
       setState: setProductInfoOrder,
     },
+    PDMileage:{
+      state: PDMileage,
+      setState: setPDMileage,
+    }
   };
 
   return (
