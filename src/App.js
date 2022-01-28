@@ -1,6 +1,7 @@
 import { useState } from "react";
+import styled from "styled-components";
 import GlobalStyle from "Style/GlobalStyle";
-// import Nav from "Component/Nav";
+import Nav from "Component/Nav";
 import ProductSalesperiod from "./Component/ProductSalesperiod";
 import PDOption from "Component/PDoption";
 import PDdata from "store/PDdata.js";
@@ -12,13 +13,24 @@ const App = () => {
   return (
     <div className="App">
       <GlobalStyle />
-      {/* <Nav /> */}
-      <ProductSalesperiod />
-      <PDdata>
-        <PDOption />
-        <ProductInfo />
-      </PDdata>
+      <Nav />
+      <Main>
+        <PDdata>
+          <ProductSalesperiod />
+          <PDOption />
+          <ProductInfo />
+        </PDdata>
+      </Main>
     </div>
   );
 };
 export default App;
+
+
+const Main = styled.div`
+  margin-left: 10vw;
+  padding: 0.5em;
+  padding-top: 5vh;
+  border: 0.1em solid rgb(200, 200, 200);
+  border-radius: 5px;
+`
