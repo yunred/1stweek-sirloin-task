@@ -8,6 +8,7 @@ import ProductInfo from 'Component/ProductInfo';
 import ProductInfoNotice from 'Component/ProductInfoNotice';
 import ProductDelivery from 'Component/ProductDelivery';
 import PDMileage from 'Component/PDMileage';
+import ETC from 'Component/ETC';
 
 
 const App = () => {  
@@ -23,6 +24,7 @@ const App = () => {
           <ProductInfoNotice/>
           <ProductDelivery/>
           <PDMileage/>
+          <ETC/>
         </PDdata>
       </Main>
     </div>

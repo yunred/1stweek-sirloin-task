@@ -8,6 +8,8 @@ const PDdata = props => {
   const [ProductInfoList, setProductInfoLIst] = useState(PIData);
   const [ProductInfoOrder, setProductInfoOrder] = useState([PIOrder]);
   const [PDMileage, setPDMileage] = useState(true);
+  const [ETC, setETC] = useState(false);
+
   const PDdata = {
     OptionSetData: {
       state: OptionSetList,
@@ -24,6 +26,10 @@ const PDdata = props => {
     PDMileage:{
       state: PDMileage,
       setState: setPDMileage,
+    },
+    ETC:{
+      state: ETC,
+      setState: setETC,
     }
   };
 
