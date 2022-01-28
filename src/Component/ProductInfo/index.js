@@ -114,25 +114,26 @@ export const PIContent = (props) => {
   const [thumbnail, setThumbnail] = useState("");
   const [openFilterBox, setOpenFilterBox] = useState(false);
   const [filterTagInput, setFilterTagInput] = useState("");
-  const [stock,setStock] = useState(0);
+  const [stock, setStock] = useState(0);
 
   useEffect(() => {
     console.log("ProductInfo: ", state);
   }, [state]);
 
-  useEffect(()=>{
-
+  useEffect(() => {
     let stock = 0;
 
-    if(optionState.length !== 0){
-      for(let i of optionState){
-        for(let j of i.optionList){
-          j.optionValue[2] !== '' ? stock += parseInt(j.optionValue[2]) : stock+=parseInt(0);
+    if (optionState.length !== 0) {
+      for (let i of optionState) {
+        for (let j of i.optionList) {
+          j.optionValue[2] !== ""
+            ? (stock += parseInt(j.optionValue[2]))
+            : (stock += parseInt(0));
         }
       }
     }
     setStock(stock);
-  },[optionState])
+  }, [optionState]);
 
   useEffect(() => {
     const filterTagCopyData = [...state.filterTagList];
@@ -159,12 +160,12 @@ export const PIContent = (props) => {
     }
   }, [productImgList]);
 
-  useEffect(()=>{
-      const idx = handleProductIdx();
-      const newState = {...state}
-      newState.product.idx = idx;
-      setState(newState)
-  },[])
+  useEffect(() => {
+    const idx = handleProductIdx();
+    const newState = { ...state };
+    newState.product.idx = idx;
+    setState(newState);
+  }, []);
 
   const handleProductCategory = (item) => {
     const newState = { ...state };
@@ -197,7 +198,9 @@ export const PIContent = (props) => {
     if (!newState.filterTagList[originalIndex].checked) {
       newState.product.filterTag.push(newState.filterTagList[originalIndex]);
     } else {
-      const findIndex = newState.product.filterTag.findIndex( el => el.idx === item.idx)
+      const findIndex = newState.product.filterTag.findIndex(
+        (el) => el.idx === item.idx
+      );
       newState.product.filterTag.splice(findIndex, 1);
     }
     newState.filterTagList[originalIndex].checked =
@@ -225,7 +228,7 @@ export const PIContent = (props) => {
 
   const handleKeyUp = (e) => {
     if (e.key === "Enter") {
-      setOpenFilterBox(true)
+      setOpenFilterBox(true);
       handleSearch();
     }
   };
@@ -260,46 +263,43 @@ export const PIContent = (props) => {
   };
 
   const handleProductIdx = () => {
-
-    let idx = '#';
+    let idx = "#";
 
     const strArr = [];
 
-    for(let i = 'a'; i <= 'z'; i++){
-        strArr.push(i);
-    }
-
-    for(let i = 'A'; i <= 'Z'; i++){
-        strArr.push(i);
-    }
-
-    for(let i = 0; i <= 9; i++){
+    for (let i = "a"; i <= "z"; i++) {
       strArr.push(i);
     }
 
-    while(idx.length < 5){
+    for (let i = "A"; i <= "Z"; i++) {
+      strArr.push(i);
+    }
+
+    for (let i = 0; i <= 9; i++) {
+      strArr.push(i);
+    }
+
+    while (idx.length < 5) {
       idx += strArr[Math.floor(Math.random() * strArr.length)];
     }
-    
+
     return idx;
-  }
+  };
 
   const handleImgPop = (item) => {
-
-    const newState = {...state}
-    const newArr = newState.product.imgs.filter(el => {if(el.name !== item.name) return el})
+    const newState = { ...state };
+    const newArr = newState.product.imgs.filter((el) => {
+      if (el.name !== item.name) return el;
+    });
     newState.product.imgs = newArr;
     setState(newState);
-
-  }
+  };
 
   const handleThumbnailPop = () => {
-
-    const newState = {...state}
+    const newState = { ...state };
     newState.product.thumbnail = "";
     setState(newState);
-
-  }
+  };
 
   return (
     <S.ItemContainer>
@@ -324,22 +324,24 @@ export const PIContent = (props) => {
             })}
           </S.ListContainer>
           <S.ListContainer width={`30%`} className="selectedBox">
-            {state.product.category.length !== 0 ? state.product.category.map((item) => {
-              return (
-                <S.Tag key={item.idx}>
-                  {item.content}
-                  <button
-                    onClick={() => {
-                      handleProductCategory(item);
-                    }}
-                  >
-                    X
-                  </button>
-                </S.Tag>
-              );
-            })
-            : <div>카테고리를 지정해주세요.</div>
-            }
+            {state.product.category.length !== 0 ? (
+              state.product.category.map((item) => {
+                return (
+                  <S.Tag key={item.idx}>
+                    {item.content}
+                    <button
+                      onClick={() => {
+                        handleProductCategory(item);
+                      }}
+                    >
+                      X
+                    </button>
+                  </S.Tag>
+                );
+              })
+            ) : (
+              <div>카테고리를 지정해주세요.</div>
+            )}
           </S.ListContainer>
         </S.InnerContainer>
       </S.Item>
@@ -369,49 +371,58 @@ export const PIContent = (props) => {
             </button>
           </S.InputContainer>
           {openFilterBox && (
-            <S.FilterTagBox>
-              {filterTagData.length !== 0 && <p> 선택 가능한 태그</p>}
-              <S.ListContainer className="filterList">
-              {filterTagData.length === 0 ? <p>검색 결과가 없습니다.</p> : 
-                filterTagData.map((item, index) => {
-                  return (
-                    !item.checked && (
-                      <S.ListItem
-                        checked={item.checked}
-                        className="filterItem"
-                        onClick={() => {
-                          handleProductFilterTag(item, index);
-                        }}
-                        key={item.idx}
-                      >
-                        {item.content}
-                      </S.ListItem>
-                    )
-                  );
-                })}
-              </S.ListContainer>
-            </S.FilterTagBox>
+            <S.OverFlowContainer>
+              <S.FilterTagBox className="filterContainer">
+                {filterTagData.length !== 0 && <p> 선택 가능한 태그</p>}
+                <S.ListContainer className="filterList">
+                  {filterTagData.length === 0 ? (
+                    <p>검색 결과가 없습니다.</p>
+                  ) : (
+                    filterTagData.map((item, index) => {
+                      return (
+                        !item.checked && (
+                          <S.ListItem
+                            checked={item.checked}
+                            className="filterItem"
+                            onClick={() => {
+                              handleProductFilterTag(item, index);
+                            }}
+                            key={item.idx}
+                          >
+                            {item.content}
+                          </S.ListItem>
+                        )
+                      );
+                    })
+                  )}
+                </S.ListContainer>
+              </S.FilterTagBox>
+            </S.OverFlowContainer>
           )}
           {!openFilterBox && state.product.filterTag.length > 0 && (
-            <S.FilterTagBox>
-                {state.product.filterTag.length !== 0 ? <p>지정된 필터태그</p> : null }
-              <S.ListContainer className="filterList">
-                {state.product.filterTag.map((item, index) => {
-                  return (
-                    item.checked && (
-                      <S.ListItem
-                        onClick={() => {
-                          handleProductFilterTag(item, index);
-                        }}
-                        key={item.idx}
-                      >
-                        {item.content}
-                      </S.ListItem>
-                    )
-                  );
-                })}
-              </S.ListContainer>
-            </S.FilterTagBox>
+            <S.OverFlowContainer>
+              <S.FilterTagBox>
+                {state.product.filterTag.length !== 0 && (
+                  <p className="selectedFilterTag">지정된 필터태그</p>
+                ) }
+                <S.ListContainer className="filterList">
+                  {state.product.filterTag.map((item, index) => {
+                    return (
+                      item.checked && (
+                        <S.ListItem
+                          onClick={() => {
+                            handleProductFilterTag(item, index);
+                          }}
+                          key={item.idx}
+                        >
+                          {item.content}
+                        </S.ListItem>
+                      )
+                    );
+                  })}
+                </S.ListContainer>
+              </S.FilterTagBox>
+            </S.OverFlowContainer>
           )}
         </S.InnerContainer>
       </S.Item>
@@ -451,7 +462,19 @@ export const PIContent = (props) => {
         <S.InnerContainer>
           <SelectImg imgList={thumbnail} imgSetter={setThumbnail} />
           <div className="thumbnail">
-            {state.product.thumbnail !== "" && <> {state.product.thumbnail.name} <button onClick={()=>{handleThumbnailPop()}}>X</button> </>} 
+            {state.product.thumbnail !== "" && (
+              <>
+                {" "}
+                {state.product.thumbnail.name}{" "}
+                <button
+                  onClick={() => {
+                    handleThumbnailPop();
+                  }}
+                >
+                  X
+                </button>{" "}
+              </>
+            )}
           </div>
         </S.InnerContainer>
       </S.Item>
@@ -465,7 +488,18 @@ export const PIContent = (props) => {
           <S.ListContainer className="imgBox">
             {state.product.imgs.length > 0 &&
               state.product.imgs.map((item) => {
-                return <S.ListItem key={item.name}>{item.name} <button onClick={()=>{handleImgPop(item)}}>X</button></S.ListItem>;
+                return (
+                  <S.ListItem key={item.name}>
+                    {item.name}{" "}
+                    <button
+                      onClick={() => {
+                        handleImgPop(item);
+                      }}
+                    >
+                      X
+                    </button>
+                  </S.ListItem>
+                );
               })}
           </S.ListContainer>
         </S.InnerContainer>
