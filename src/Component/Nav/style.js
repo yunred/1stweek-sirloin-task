@@ -3,13 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const NavContainer = styled.ul`
   list-style-type: none;
-  margin: 0;
+  margin-top: -13px;
   padding: 0;
   width: 10%;
   position: fixed;
   height: 100%;
   overflow: auto;
-  border-right: 1px solid rgb(239, 239, 239);
+  border-right: 1px solid gray;
 `;
 
 export const NavMenu = styled.li`
@@ -19,17 +19,17 @@ export const NavMenu = styled.li`
   text-align: left;
   font-weight: 600;
   border-bottom: 1px solid gray;
-  &: first-child {
+  &:first-child {
     padding: 12px 20px;
     color: rgb(53, 47, 110);
     font-size: 16px;
   }
   &:nth-child(n + 6):nth-child(-n + 7) {
-    background: gray;
+    background: rgb(229, 229, 229);
   }
   &:nth-child(8) {
     color: rgb(53, 47, 110);
-    background: rgb(53, 47, 110, 0.2);
+    background: rgb(53, 47, 110, 0.3);
   }
 `;
 

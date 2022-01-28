@@ -125,6 +125,7 @@ export const PIContent = (props) => {
     let stock = 0;
 
     if(optionState.length !== 0){
+      // console.log(optionState[0].optionList[0].optionValue)
       for(let i of optionState){
         for(let j of i.optionList){
           j.optionValue[2] !== '' ? stock += parseInt(j.optionValue[2]) : stock+=parseInt(0);
@@ -265,15 +266,15 @@ export const PIContent = (props) => {
 
     const strArr = [];
 
-    for(let i = 'a'; i <= 'z'; i++){
+    for(let i = 'a'; i < 'z'; i++){
         strArr.push(i);
     }
 
-    for(let i = 'A'; i <= 'Z'; i++){
+    for(let i = 'A'; i < 'Z'; i++){
         strArr.push(i);
     }
 
-    for(let i = 0; i <= 9; i++){
+    for(let i = 0; i < 9; i++){
       strArr.push(i);
     }
 
