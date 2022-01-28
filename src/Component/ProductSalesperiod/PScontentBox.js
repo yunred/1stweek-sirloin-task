@@ -1,14 +1,17 @@
+import React, { useState } from "react";
 import * as Style from "./style";
 import DateTime from "Util/DateTime";
 // import Date from "Util/DateTime/Date";
 
 export const ProodctBox = (props) => {
+  const [state, setState] = useState("");
+  console.log(state);
   return (
     <Style.ProductListContainer>
       <Style.TitleBox>{props.name}</Style.TitleBox>
       <Style.ContentsBox>
         <Style.Box>
-          <Style.Input type="radio" name="radiobutton" checked />
+          <Style.Input type="radio" name="radiobutton" />
           <span>제한없음</span>
         </Style.Box>
         <Style.Box>
@@ -20,7 +23,7 @@ export const ProodctBox = (props) => {
           <span>노출 기간 설정</span>
         </Style.Box>
         <Style.Box>
-          <DateTime />
+          <DateTime state={state} setState={setState} />
           {/* <Date /> */}
         </Style.Box>
       </Style.ContentsBox>
