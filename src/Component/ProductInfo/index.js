@@ -121,6 +121,16 @@ export const PIContent = (props) => {
   useEffect(() => {
     const filterTagCopyData = [...state.filterTagList];
 
+    filterTagCopyData.sort((a,b)=>{
+        let x = a.content;
+        let y = b.content;
+        
+        if(x < y) return -1;
+        if(x > y) return 1;
+        return 0;
+
+      })
+
     setFilterTagData(filterTagCopyData);
   }, [state.filterTagList]);
 
@@ -148,7 +158,6 @@ export const PIContent = (props) => {
 
     const originalIndex = newState.filterTagList.findIndex((el) => el.idx === item.idx);
 
-    console.log(originalIndex)
     if (!newState.filterTagList[originalIndex].checked) {
       newState.product.filterTag.push(newState.filterTagList[index]);
     } else {
@@ -161,24 +170,29 @@ export const PIContent = (props) => {
   };
 
   const handleProductFilterTagSearch = (e) => {
-    const keyword = e.target.value;
-    setFilterTagInput(keyword);
+    setFilterTagInput(e.target.value);
   };
 
-  const handleSearch = (e) => {
+  const handleSearch = () => {
 
-    if(e.key === 'Enter'){
-
-      const filterTagCopyData = [...state.filterTagList];
+      let filterTagCopyData = [...state.filterTagList];
       
       filterTagCopyData =
       filterTagInput !== ""
       ? filterTagCopyData.filter((el) => {
-        if (el.indexOf(filterTagInput) !== -1) return el;
+        if (el.content.indexOf(filterTagInput) !== -1) return el;
       })
       : filterTagCopyData;
+
+      console.log(filterTagCopyData)
       
       setFilterTagData(filterTagCopyData);
+  }
+
+  const handleKeyUp = (e) => {
+
+    if(e.key === 'Enter'){
+      handleSearch();
     }
   }
 
@@ -243,16 +257,17 @@ export const PIContent = (props) => {
         <S.Title>필터 태그</S.Title>
         <S.InnerContainer className="filterBox">
           <S.InputContainer
-            onClick={() => {
-              setOpenFilterBox(!openFilterBox);
-            }}
           >
             <input
               type="text"
               placeholder="필터태그를 검색해 주세요."
               onChange={(e) => {handleProductFilterTagSearch(e)}}
+              onClick={() => {
+                setOpenFilterBox(!openFilterBox);
+              }}
+              onKeyPress={(e)=>{handleKeyUp(e)}}
             />
-            <button onKeyPress={(e)=>{handleSearch(e)}}>검색</button>
+            <button onClick={()=>{handleSearch()}}>검색</button>
           </S.InputContainer>
           {openFilterBox && (
             <S.FilterTagBox>

@@ -32,12 +32,12 @@ const PIData = {
     { idx: 6, checked: false, content: "카테고리6" },
   ],
   filterTagList: [
-    { idx: 1, checked: false, content: "필터태그1" },
-    { idx: 2, checked: false, content: "필터태그2" },
-    { idx: 3, checked: false, content: "필터태그3" },
-    { idx: 4, checked: false, content: "필터태그4" },
-    { idx: 5, checked: false, content: "필터태그5" },
-    { idx: 6, checked: false, content: "필터태그6" },
+    { idx: 1, checked: false, content: "가나다" },
+    { idx: 2, checked: false, content: "가나" },
+    { idx: 3, checked: false, content: "가나다라" },
+    { idx: 4, checked: false, content: "가가가" },
+    { idx: 5, checked: false, content: "가나다라마" },
+    { idx: 6, checked: false, content: "가가나" },
   ],
   product: {
     category: [],
