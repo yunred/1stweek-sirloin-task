@@ -5,7 +5,7 @@ const Toggle = (props) => {
     return(
     <>
     <S.CheckBoxWrapper>
-        <S.CheckBox id='checkbox' type='checkbox'/>
+        <S.CheckBox value={state} id='checkbox' type='checkbox'/>
         <S.CheckBoxLabel htmlFor='checkbox' onClick={() => {setstate(!state)}}/>
     </S.CheckBoxWrapper>
     </>
