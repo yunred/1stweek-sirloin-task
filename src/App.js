@@ -1,16 +1,15 @@
-import styled from 'styled-components';
-import GlobalStyle from 'Style/GlobalStyle';
+import styled from "styled-components";
+import GlobalStyle from "Style/GlobalStyle";
 import Nav from "Component/Nav";
-import ProductSalesperiod from './Component/ProductSalesperiod';
-import PDOption from 'Component/PDoption';
-import PDdata from 'store/PDdata.js';
-import ProductInfo from 'Component/ProductInfo';
-import ProductInfoNotice from 'Component/ProductInfoNotice';
-import ProductDelivery from 'Component/ProductDelivery';
-import PDMileage from 'Component/PDMileage';
+import ProductSalesperiod from "./Component/ProductSalesperiod";
+import PDOption from "Component/PDoption";
+import PDdata from "store/PDdata.js";
+import ProductInfo from "Component/ProductInfo";
+import ProductInfoNotice from "Component/ProductInfoNotice";
+import ProductDelivery from "Component/ProductDelivery";
+import PDMileage from "Component/PDMileage";
 
-
-const App = () => {  
+const App = () => {
   return (
     <div className="App">
       <GlobalStyle />
@@ -19,10 +18,10 @@ const App = () => {
         <PDdata>
           <ProductSalesperiod />
           <ProductInfo />
-          <PDOption/>
-          <ProductInfoNotice/>
-          <ProductDelivery/>
-          <PDMileage/>
+          <PDOption />
+          <ProductInfoNotice />
+          <ProductDelivery />
+          <PDMileage />
         </PDdata>
       </Main>
     </div>
