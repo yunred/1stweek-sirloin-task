@@ -20,14 +20,14 @@ export const ContentsBox = styled.div`
   border-top: 0.1em solid rgb(227, 227, 227);
 `;
 
-export const Input = styled.input`
+export const Input = styled.input.attrs({ type: "radio" })`
   width: 20px;
+  color: blue;
+  }
 `;
 
 export const Box = styled.div`
-  display: flexl
+  display: flex
   flex-direction: column;
   margin : 10px 20px;
 `;
-
-export const RadioBtn = styled.input``;

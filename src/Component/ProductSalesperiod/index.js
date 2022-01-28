@@ -1,5 +1,6 @@
 import Container from "Component/Container";
 import PScontentBox from "./PScontentBox";
+import PScontentBoxSecond from "./PScontentBoxSecond";
 import * as Style from "./style";
 
 export const PSheader = () => {
@@ -14,10 +15,16 @@ export const PSheader = () => {
 
 const ProductSalesperiod = (props) => {
   return (
-    <Container
-      ContainerHeader={<PSheader />}
-      ContainerContent={<PScontentBox />}
-    />
+    <>
+      <Container
+        ContainerHeader={<PSheader />}
+        ContainerContent={
+          <>
+            <PScontentBox /> <PScontentBoxSecond />
+          </>
+        }
+      />
+    </>
   );
 };
 
