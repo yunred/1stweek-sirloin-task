@@ -1,22 +1,20 @@
 import Container from "Component/Container";
-import * as Style from "./";
+import PScontentBox from "./PScontentBox";
+import * as Style from "./style";
 
-export const PSheader = (props) => {
-  const optionSetter = props.optionSetter;
-
+export const PSheader = () => {
   return (
     <>
-      <S.ContainerName>상품 옵션</S.ContainerName>
-      <S.OptionSetAppederButton>+ 옵션 세트 추가</S.OptionSetAppederButton>
+      <Style.ProductContainer>노출 및 판매기간 설정</Style.ProductContainer>
     </>
   );
 };
 
-const ProductSalesperiod = () => {
+const ProductSalesperiod = (props) => {
   return (
     <Container
       ContainerHeader={<PSheader />}
-      ContainerContent={<MDOContent />}
+      ContainerContent={<PScontentBox />}
     />
   );
 };
