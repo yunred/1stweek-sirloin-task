@@ -25,24 +25,24 @@ const PDIntroduceContent = () => {
   const setState = PDImageContext.setState;
 
   useEffect(() => {
-    const newState = { ...state };
-
-    if (PDIntroduceImg.length > 0) {
-      const newItem = PDIntroduceImg.pop();
-      PDIntroduceImg.unshift(newItem);
-    }
-    newState.productIntroduceImg = PDIntroduceImg;
-    setState(newState);
-  }, [PDIntroduceImg]);
-
-  useEffect(() => {
     console.log("PDImage: ", state);
   }, [state]);
 
+
+  useEffect(() => {
+    const newState = { ...state };
+
+    if (PDIntroduceImg.length > 0) {
+      const newItem = [...PDIntroduceImg][0]
+      newState.productIntroduceImg.unshift(newItem)
+      setState(newState);
+      setPDIntroduceImg([])
+    }
+  }, [PDIntroduceImg]);
+  
   const handlePop = (index) => {
     const newState = {...state};
-    const newArr = PDIntroduceImg.splice(index,1);
-    newState.productIntroduceImg = newArr;
+    newState.productIntroduceImg.splice(index,1);
     setState(newState);
   }
 
@@ -78,17 +78,16 @@ const PDBuyerContent = () => {
     const newState = { ...state };
 
     if (PDBuyerImg.length > 0) {
-      const newItem = PDBuyerImg.pop();
-      PDBuyerImg.unshift(newItem);
+      const newItem = [...PDBuyerImg][0]
+      newState.productBuyerImg.unshift(newItem);
+      setPDBuyerImg([]);
+      setState(newState);
     }
-    newState.productBuyerImg = PDBuyerImg;
-    setState(newState);
   }, [PDBuyerImg]);
 
   const handlePop = (index) => {
     const newState = {...state};
-    const newArr = PDBuyerImg.splice(index,1);
-    newState.productBuyerImg = newArr;
+    newState.productBuyerImg.splice(index,1);
     setState(newState);
   }
 
