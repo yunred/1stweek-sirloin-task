@@ -1,5 +1,5 @@
-import react, {useCallback, useState, useContext } from "react";
-import { MDContext } from 'store/MDdata.js';
+import react, {useCallback, useState, useContext, useEffect } from "react";
+import { PDcontext } from 'store/PDdata.js';
 import Container from "Component/Container";
 import SelectImg from 'Util/SelectImg';
 import * as S from "./style";
@@ -19,8 +19,8 @@ optionSetter(
 }
 */
 
-export const MDOheader = () => {
-    const context = useContext(MDContext).OptionSetData;
+export const PDOheader = () => {
+    const context = useContext(PDcontext).OptionSetData;
     const state = context.state;
     const setstate = context.setstate;
     return(
@@ -49,8 +49,8 @@ export const MDOheader = () => {
 
 
 
-const MDOContent = () => {
-    const context = useContext(MDContext).OptionSetData;
+const PDOContent = () => {
+    const context = useContext(PDcontext).OptionSetData;
     const state = context.state;
     const setstate = context.setstate;
 
@@ -58,35 +58,47 @@ const MDOContent = () => {
         <S.DefaultScreen>
         <S.H3>옵션 세트를 추가하여 옵션을 구성해 주세요</S.H3>
         </S.DefaultScreen>:
-        <S.OptionSet>
-            <OptionSetThumbnail/>
-        </S.OptionSet>
+            state.map((value, index) => {
+                return(//value.optionImg.length == 0?
+                <S.OptionSetContainer key={index}>
+                    <OptionSet index={index}/>
+                </S.OptionSetContainer>
+                )
+            })
+        
     )
 }
 
-const OptionSetThumbnail = () => {
-    const context = useContext(MDContext).OptionSetData;
+const OptionSet = (props) => {
+    const context = useContext(PDcontext).OptionSetData;
     const state = context.state;
     const setstate = context.setstate;
+    const [imgList, setImgList] = useState([]);
+    useEffect(()=>{
+        const newstate = [...state];
+        newstate[props.index].optionImg = imgList;
+        setstate(newstate);
+    }, [imgList])
 
     return(
         <div>
-            <SelectImg />
+            {props.index}
+            <SelectImg imgList={imgList} imgSetter={setImgList}/>
         </div>
     )
     
 }
 
-const MDOption = () => {
-    const context = useContext(MDContext).OptionSetData;
+const PDoption = () => {
+    const context = useContext(PDcontext).OptionSetData;
     console.log(context.state);
     return(
         <Container 
             ContainerHeader = {
-                <MDOheader />
+                <PDOheader />
             } 
             ContainerContent = {
-                <MDOContent/>
+                <PDOContent/>
             }
         />
     )
@@ -94,4 +106,4 @@ const MDOption = () => {
 
 
 
-export default MDOption
+export default PDoption

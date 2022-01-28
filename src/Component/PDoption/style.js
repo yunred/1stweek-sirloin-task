@@ -27,7 +27,7 @@ export const H3 = styled.h3`
   height: 25em;
 `;
 
-export const OptionSet = styled.div`
+export const OptionSetContainer = styled.div`
     border: 0.5em, solid, rgb(227,227,227); 
     margin: 1em;
 `
