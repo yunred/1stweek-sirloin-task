@@ -514,4 +514,5 @@ export const PIContent = (props) => {
   );
 };
 
+
 export default React.memo(ProductInfo);

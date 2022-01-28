@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import PIData  from 'Component/ProductInfo/data';
+import PDImage from 'Component/ProductImage/data';
 
 export const PDcontext = createContext();
 
@@ -8,6 +9,7 @@ const PDdata = props => {
   const [ProductInfoList, setProductInfoLIst] = useState(PIData);
   const [ProductInfoOrder, setProductInfoOrder] = useState([PIOrder]);
   const [PDMileage, setPDMileage] = useState(true);
+  const [ProductImage, setProductImage] = useState(PDImage);
   const PDdata = {
     OptionSetData: {
       state: OptionSetList,
@@ -24,7 +26,11 @@ const PDdata = props => {
     PDMileage:{
       state: PDMileage,
       setState: setPDMileage,
-    }
+    },
+    PDImage:{
+      state:ProductImage,
+      setState:setProductImage
+    },
   };
 
   return (
