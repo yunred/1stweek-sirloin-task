@@ -112,6 +112,7 @@ export const PIContent = (props) => {
   const [filterTagData, setFilterTagData] = useState();
   const [imgList, setImgList] = useState([]);
   const [openFilterBox, setOpenFilterBox] = useState(false);
+  const [filterTagInput, setFilterTagInput] = useState("");
 
   useEffect(() => {
     console.log("ProductInfo: ", state);
@@ -121,7 +122,7 @@ export const PIContent = (props) => {
     const filterTagCopyData = [...state.filterTagList];
 
     setFilterTagData(filterTagCopyData);
-  }, []);
+  }, [state.filterTagList]);
 
   const handleProductCategory = (e, item) => {
     const index = e.target.value;
@@ -130,40 +131,56 @@ export const PIContent = (props) => {
 
     if (!newState.categoryList[index].checked) {
       newState.product.category.push(newState.categoryList[index]);
-      newState.categoryList[index].checked =
-        !newState.categoryList[index].checked;
     } else {
       const findIndex = newState.product.category.findIndex(
         (el) => el.idx === item.idx
       );
       newState.product.category.splice(findIndex, 1);
-      newState.categoryList[index].checked =
-        !newState.categoryList[index].checked;
     }
+    newState.categoryList[index].checked =
+      !newState.categoryList[index].checked;
 
     setState(newState);
   };
 
-  const handleProductFilterTag = (item,index) => {
-
+  const handleProductFilterTag = (item, index) => {
     const newState = { ...state };
 
-    console.log(index)
+    const originalIndex = newState.filterTagList.findIndex((el) => el.idx === item.idx);
 
-    if (!newState.filterTagList[index].checked) {
+    console.log(originalIndex)
+    if (!newState.filterTagList[originalIndex].checked) {
       newState.product.filterTag.push(newState.filterTagList[index]);
-      newState.filterTagList[index].checked =
-        !newState.filterTagList[index].checked;
     } else {
-      const findIndx = newState.product.filterTag.findIndex(
-        (el) => el.idx === item.idx
-      );
-      newState.product.filterTag.splice(findIndx, 1);
-      newState.filterTagList[index].checked = !newState.filterTagList[index].checked;
+      newState.product.filterTag.splice(index, 1);
     }
+    newState.filterTagList[originalIndex].checked =
+      !newState.filterTagList[originalIndex].checked;
 
     setState(newState);
   };
+
+  const handleProductFilterTagSearch = (e) => {
+    const keyword = e.target.value;
+    setFilterTagInput(keyword);
+  };
+
+  const handleSearch = (e) => {
+
+    if(e.key === 'Enter'){
+
+      const filterTagCopyData = [...state.filterTagList];
+      
+      filterTagCopyData =
+      filterTagInput !== ""
+      ? filterTagCopyData.filter((el) => {
+        if (el.indexOf(filterTagInput) !== -1) return el;
+      })
+      : filterTagCopyData;
+      
+      setFilterTagData(filterTagCopyData);
+    }
+  }
 
   const handleProductDescription = (e) => {
     const newState = { ...state };
@@ -233,47 +250,47 @@ export const PIContent = (props) => {
             <input
               type="text"
               placeholder="필터태그를 검색해 주세요."
-              readOnly
+              onChange={(e) => {handleProductFilterTagSearch(e)}}
             />
-            <button>검색</button>
+            <button onKeyPress={(e)=>{handleSearch(e)}}>검색</button>
           </S.InputContainer>
           {openFilterBox && (
             <S.FilterTagBox>
               <S.ListContainer className="filterList">
-                {filterTagData
-                  .filter((el) => {
-                    if (!el.checked) return el;
-                  })
-                  .map((item,index) => {
-                    return (
+                {filterTagData.map((item, index) => {
+                  return (
+                    !item.checked && (
                       <S.ListItem
                         checked={item.checked}
                         className="filterItem"
                         onClick={() => {
-                          handleProductFilterTag(item,index);
+                          handleProductFilterTag(item, index);
                         }}
                         key={item.idx}
                       >
                         {item.content}
                       </S.ListItem>
-                    );
-                  })}
+                    )
+                  );
+                })}
               </S.ListContainer>
             </S.FilterTagBox>
           )}
           {!openFilterBox && state.product.filterTag.length > 0 && (
             <S.FilterTagBox>
               <S.ListContainer className="filterList">
-                {state.product.filterTag.map((item,index) => {
+                {state.product.filterTag.map((item, index) => {
                   return (
-                    <S.ListItem
-                      onClick={() => {
-                        handleProductFilterTag(item,index);
-                      }}
-                      key={item.idx}
-                    >
-                      {item.content}
-                    </S.ListItem>
+                    item.checked && (
+                      <S.ListItem
+                        onClick={() => {
+                          handleProductFilterTag(item, index);
+                        }}
+                        key={item.idx}
+                      >
+                        {item.content}
+                      </S.ListItem>
+                    )
                   );
                 })}
               </S.ListContainer>
