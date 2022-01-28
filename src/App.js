@@ -4,9 +4,10 @@ import Nav from "Component/Nav/Nav";
 import PDOption from "Component/PDoption";
 import PDdata from "store/PDdata.js";
 import ProductInfo from "Component/ProductInfo";
+import Toggle from "Util/Toggle";
 
 const App = () => {  
-
+  const [toggle, setoggle] = useState(false);
   return (
     <div className="App">
       <GlobalStyle />
@@ -15,6 +16,10 @@ const App = () => {
         <PDOption />
         <ProductInfo />
       </PDdata>
+    <Toggle
+      leftColor = {"blue"}
+      circleColor= {"blue"}
+    />
     </div>
   );
 }
