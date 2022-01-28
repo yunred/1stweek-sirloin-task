@@ -5,12 +5,18 @@ export const ProodctBox = (props) => {
     <Style.ProductListContainer>
       <Style.TitleBox>{props.name}</Style.TitleBox>
       <Style.ContentsBox>
-        <Style.Input type="radio" />
-        제한없음
-        <Style.Input type="radio" />
-        미판매
-        <Style.Input type="radio" />
-        노출 기간 설정
+        <Style.Box>
+          <Style.Input type="radio" />
+          <span>제한없음</span>
+        </Style.Box>
+        <Style.Box>
+          <Style.Input type="radio" />
+          <span>미판매</span>
+        </Style.Box>
+        <Style.Box>
+          <Style.Input type="radio" />
+          <span>노출 기간 설정</span>
+        </Style.Box>
       </Style.ContentsBox>
     </Style.ProductListContainer>
   );

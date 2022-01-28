@@ -18,10 +18,14 @@ export const TitleBox = styled.div`
 export const ContentsBox = styled.div`
   width: 80%;
   border-top: 0.1em solid rgb(227, 227, 227);
-  display: block;
 `;
 
 export const Input = styled.input`
   width: 20px;
-  vertical-align: middle;
+`;
+
+export const Box = styled.div`
+  display: flexl
+  flex-direction: column;
+  margin : 10px 20px;
 `;
