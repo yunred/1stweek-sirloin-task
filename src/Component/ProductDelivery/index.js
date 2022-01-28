@@ -2,7 +2,7 @@ import * as S from './style';
 import Container from 'Component/Container';
 import DateTime from 'Util/DateTime';
 import Date from 'Util/DateTime/Date';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { PDcontext } from 'store/PDdata';
 import * as ST from 'Util/Toggle/style.js';
 
@@ -26,6 +26,27 @@ export const PDeliveryContent = () => {
   const setDeliveryState = deliveryContext.setState;
   const [state, setState] = useState('');
 
+  useEffect(() => {
+    if (
+      deliveryState.isDesignated === true ||
+      deliveryState.isPickup === true
+    ) {
+      const editState = { ...deliveryState };
+      editState.ispreOrder = false;
+      setDeliveryState(editState);
+    }
+  }, [deliveryState.isDesignated, deliveryState.isPickup]);
+
+  useEffect(() => {
+    if (deliveryState.ispreOrder === true) {
+      console.log('gd');
+      const editState = { ...deliveryState };
+      editState.isDesignated = false;
+      editState.isPickup = false;
+      setDeliveryState(editState);
+    }
+  }, [deliveryState.ispreOrder]);
+
   return (
     <>
       <div className="container">
@@ -46,6 +67,11 @@ export const PDeliveryContent = () => {
                   const newState = { ...deliveryState };
                   newState.isDesignated = !newState.isDesignated;
                   setDeliveryState(newState);
+                  // if (deliveryState.isDesignated === true) {
+                  //   const editState = { ...deliveryState };
+                  //   editState.ispreOrder = false;
+                  //   setDeliveryState(editState);
+                  // }
                 }}
               />
             </ST.CheckBoxWrapper>
