@@ -5,7 +5,6 @@ export const ProductInfoNoticeContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   margin: 14px;
-
   margin: 0 auto;
   input,
   .more_button,
@@ -25,21 +24,17 @@ export const ProductInfoNoticeContainer = styled.div`
     font-weight: 700;
     margin-left: 10px;
   }
-
   h4 {
     margin-top: 0;
   }
-
   .title {
     display: flex;
     justify-content: space-between;
     padding: 20px;
-
     > span {
       font-weight: 700;
     }
   }
-
   .top_container {
     padding: 20px;
   }
@@ -80,6 +75,7 @@ export const ProductInfoNoticeContainer = styled.div`
   .more_info_delete_btn {
     width: 17%;
     color: red;
+    height: 100%;
   }
   .order_delete_btn {
     padding: 10px 20px;
