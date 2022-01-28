@@ -18,6 +18,7 @@ cursor: pointer;
   display: block;
   position: relative;
   top: -5px;
+  left: -3px;
   border-radius: 50%;
   width: 18px;
   height: 18px;
@@ -35,13 +36,16 @@ border-radius: 15px;
 width: 42px;
 height: 15px;
 &:checked + ${CheckBoxLabel} {
-  background: #4fbe79;
+  background:  rgb(174, 168, 230);
   &::after {
     content: "";
     display: block;
+    position: absolute;
+    left: 5px;
+    background: rgb(42, 35, 189);
     border-radius: 50%;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     margin-left: 21px;
     transition: 0.2s;
   }

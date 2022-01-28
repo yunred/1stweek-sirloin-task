@@ -18,10 +18,6 @@ const App = () => {
         <PDOption />
         <ProductInfo />
       </PDdata>
-    <Toggle
-      leftColor = {"blue"}
-      circleColor= {"blue"}
-    />
     </div>
   );
 };
