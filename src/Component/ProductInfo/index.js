@@ -8,10 +8,6 @@ import { PDcontext } from "store/PDdata.js";
 
 간략히=======================
 
-이미지 
-
-state X -> useEffect
-
 props = {
 
   ProductInfoList = {
@@ -62,6 +58,7 @@ props = {
       ...
     ], 
     product:{ // 등록할 상품에 대한 정보
+      idx: "#1234" 고유번호 String
       category:[ // 선택한 카테고리,
         {
           idx:1,
