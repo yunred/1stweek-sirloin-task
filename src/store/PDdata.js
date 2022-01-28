@@ -40,6 +40,7 @@ const PIData = {
     { idx: 6, checked: false, content: "가가나" },
   ],
   product: {
+    idx:"",
     category: [],
     filterTag: [],
     name: "",
