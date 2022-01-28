@@ -1,4 +1,4 @@
-import react, {useCallback, useState, useContext } from "react";
+import react, {useCallback, useState, useContext, useEffect } from "react";
 import { MDContext } from 'store/MDdata.js';
 import Container from "Component/Container";
 import SelectImg from 'Util/SelectImg';
@@ -58,20 +58,32 @@ const MDOContent = () => {
         <S.DefaultScreen>
         <S.H3>옵션 세트를 추가하여 옵션을 구성해 주세요</S.H3>
         </S.DefaultScreen>:
-        <S.OptionSet>
-            <OptionSetThumbnail/>
-        </S.OptionSet>
+            state.map((value, index) => {
+                return(
+                <S.OptionSetContainer key={index}>
+                    <OptionSet index={index}/>
+                </S.OptionSetContainer>
+                )
+            })
+        
     )
 }
 
-const OptionSetThumbnail = () => {
+const OptionSet = (props) => {
     const context = useContext(MDContext).OptionSetData;
     const state = context.state;
     const setstate = context.setstate;
+    const [imgList, setImgList] = useState([]);
+    useEffect(()=>{
+        const newstate = [...state];
+        newstate[props.index].optionImg = imgList;
+        setstate(newstate);
+    }, [imgList])
 
     return(
         <div>
-            <SelectImg />
+            {props.index}
+            <SelectImg imgList={imgList} imgSetter={setImgList}/>
         </div>
     )
     
