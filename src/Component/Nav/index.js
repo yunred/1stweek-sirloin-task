@@ -1,4 +1,5 @@
-import * as Style from "./NavStyle";
+import react, { useContext } from "react";
+import * as Style from "./style";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const Nav = (props) => {
