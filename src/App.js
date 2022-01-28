@@ -1,8 +1,8 @@
 import { useState } from "react";
 import GlobalStyle from "Style/GlobalStyle";
 import Nav from "Component/Nav/Nav";
-import MDOption from "Component/MDOption";
-import MDdata from "store/MDdata.js";
+import PDOption from "Component/PDoption";
+import PDdata from "store/PDdata.js";
 import ProductInfo from "Component/ProductInfo";
 
 const App = () => {  
@@ -11,10 +11,10 @@ const App = () => {
     <div className="App">
       <GlobalStyle />
       <Nav />
-      <MDdata>
-        <MDOption />
+      <PDdata>
+        <PDOption />
         <ProductInfo />
-      </MDdata>
+      </PDdata>
     </div>
   );
 }

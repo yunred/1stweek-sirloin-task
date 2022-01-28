@@ -1,12 +1,12 @@
 import React,{ createContext, useState } from 'react';
 
-export const MDContext = createContext();
+export const PDcontext = createContext();
 
-const MDdata = (props) => {
+const PDdata = (props) => {
     const [OptionSetList, setOptionLIst] = useState([]);
     const [ProductInfoList, setProductInfoLIst] = useState([]);
     
-    const MDdata = {
+    const PDdata = {
         OptionSetData: {
             state: OptionSetList,
             setstate: setOptionLIst
@@ -17,7 +17,7 @@ const MDdata = (props) => {
         }
     }
 
-    return <MDContext.Provider value={MDdata}>{props.children}</MDContext.Provider>
+    return <PDcontext.Provider value={PDdata}>{props.children}</PDcontext.Provider>
 }
 
-export default MDdata
+export default PDdata
