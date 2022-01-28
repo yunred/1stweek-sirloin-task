@@ -3,11 +3,10 @@ import styled from "styled-components";
 export const ProductInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 75%;
   justify-content: center;
-  padding: 20px;
-  margin: 20px auto;
-  font-size: 1.3rem;
+  margin:1rem;
+  border: 0.1em solid rgb(227,227,227);
+  font-weight: 600;
 
   h4 {
     margin-top: 0;
@@ -17,11 +16,38 @@ export const ProductInfoContainer = styled.div`
     list-style: none;
     margin: 0;
     padding: 0;
+
+  }
+
+
+
+  .selectedBox{
+    margin-left:30px;
   }
 
   .filterBox {
     flex-direction: column;
   }
+
+  .imgBox{
+    width: 100%;
+    overflow-y:auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 5px;
+    margin-left: 30px;
+  }
+
+  .thumbnail{
+    margin-left:30px;
+    align-self: center;
+    button{
+      border-radius: 50px;
+      border:1px solid black;
+      width: 25px;
+      height: 25px;
+  }
+}
 `;
 
 export const Title = styled.span`
@@ -29,6 +55,7 @@ export const Title = styled.span`
   min-height: 65px;
   display: flex;
   align-items: center;
+  font-weight: 700;
 `;
 
 export const ItemContainer = styled.ul`
@@ -38,7 +65,6 @@ export const ItemContainer = styled.ul`
 
 export const Item = styled.li`
   display: flex;
-  border: 0.1em solid rgb(227, 227, 227);
   :not(:last-child) {
     border-bottom: none;
   }
@@ -51,10 +77,30 @@ export const InnerContainer = styled.div`
 `;
 
 export const ListContainer = styled.ul`
-  height: 200px;
-  overflow: scroll;
-  width: ${(props) => props.width};
+  height: 100px;
+  overflow-y: scroll;
+  /* width: ${(props) => props.width}; */
+  width: 100%;
   border-radius: 4px;
+
+  &::-webkit-scrollbar {
+    border-radius: 6px;
+    background: none;
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: #c4c4bd;
+  }
+  
+
+  button{
+    border-radius: 50px;
+    border:1px solid black;
+    width: 25px;
+    height: 25px;
+  }
 `;
 
 export const ListItem = styled.li``;
@@ -65,6 +111,10 @@ export const Tag = styled.li`
   border-radius: 4px;
   padding: 6px 8px;
   margin-bottom: 8px;
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 export const Check = styled.input``;
@@ -73,7 +123,6 @@ export const InputContainer = styled.div`
   border: 0.1em solid rgb(227, 227, 227);
   border-radius: 4px;
   width: 100%;
-  padding: 4px 6px;
   height: 50px;
   align-self: center;
 
@@ -84,6 +133,14 @@ export const InputContainer = styled.div`
     outline: none;
     border: none;
     font-size: 14px;
+  }
+
+  button {
+    background-color: none;
+    border:1px solid #414;
+    border-radius:5px;
+    width: 70px;
+    height: 80%;
   }
 `;
 
@@ -128,10 +185,14 @@ export const FilterTagBox = styled.div`
 
   .filterList {
     display: flex;
+    overflow: hidden;
     li {
       margin-left: 10px;
       padding: 6px 8px;
-      background-color: red;
+      background-color: #c5e699;
+      display:flex;
+      justify-content: center;
+      align-items: center;
       width: 100px;
       height: 30px;
       border-radius: 4px;

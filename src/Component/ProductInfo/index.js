@@ -135,9 +135,7 @@ export const PIContent = (props) => {
         }
       }
     }
-
     setStock(stock);
-
   },[optionState])
 
   useEffect(() => {
@@ -166,7 +164,10 @@ export const PIContent = (props) => {
   }, [productImgList]);
 
   useEffect(()=>{
-    handleProductIdx();
+      const idx = handleProductIdx();
+      const newState = {...state}
+      newState.product.idx = idx;
+      setState(newState)
   },[])
 
   const handleProductCategory = (item) => {
@@ -283,9 +284,8 @@ export const PIContent = (props) => {
     while(idx.length < 5){
       idx += strArr[Math.floor(Math.random() * strArr.length)];
     }
-    const newState = {...state}
-    newState.product.idx = idx;
-    setState(newState)
+    
+    return idx;
   }
 
   const handleImgPop = (item) => {
@@ -293,6 +293,14 @@ export const PIContent = (props) => {
     const newState = {...state}
     const newArr = newState.product.imgs.filter(el => {if(el.name !== item.name) return el})
     newState.product.imgs = newArr;
+    setState(newState);
+
+  }
+
+  const handleThumbnailPop = () => {
+
+    const newState = {...state}
+    newState.product.thumbnail = "";
     setState(newState);
 
   }
@@ -319,7 +327,7 @@ export const PIContent = (props) => {
               );
             })}
           </S.ListContainer>
-          <S.ListContainer width={`30%`}>
+          <S.ListContainer width={`30%`} className="selectedBox">
             {state.product.category.length !== 0 ? state.product.category.map((item) => {
               return (
                 <S.Tag key={item.idx}>
@@ -446,8 +454,8 @@ export const PIContent = (props) => {
         <S.Title>상품 썸네일</S.Title>
         <S.InnerContainer>
           <SelectImg imgList={thumbnail} imgSetter={setThumbnail} />
-          <div>
-            {state.product.thumbnail !== "" && state.product.thumbnail.name}
+          <div className="thumbnail">
+            {state.product.thumbnail !== "" && <> {state.product.thumbnail.name} <button onClick={()=>{handleThumbnailPop()}}>X</button> </>} 
           </div>
         </S.InnerContainer>
       </S.Item>
@@ -458,7 +466,7 @@ export const PIContent = (props) => {
         </S.Title>
         <S.InnerContainer>
           <SelectImg imgList={productImgList} imgSetter={setProductImgList} />
-          <S.ListContainer>
+          <S.ListContainer className="imgBox">
             {state.product.imgs.length > 0 &&
               state.product.imgs.map((item) => {
                 return <S.ListItem key={item.name}>{item.name} <button onClick={()=>{handleImgPop(item)}}>X</button></S.ListItem>;
