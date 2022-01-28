@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import * as Style from "./style";
 import Box from "@mui/material/Box";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -8,8 +8,11 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const DateTime = (props) => {
   const [value, setValue] = useState([null, null]);
-  const startDate = useRef();
-  const endDate = useRef();
+  const { state, setState } = props;
+
+  useEffect(() => {
+    setState(value);
+  }, [value]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -24,20 +27,13 @@ const DateTime = (props) => {
               <Style.Input
                 ref={startProps.inputRef}
                 {...startProps.inputProps}
-                onChange={(e) => console.log(e.target.value)}
               />
-              <Style.IconButton
-                icon={faChevronDown}
-                // onChange={(e) => startDate.current.click()}
-              />
+              <Style.IconButton icon={faChevronDown} />
             </div>
             <Box sx={{ mx: 0.1 }}> &nbsp;&nbsp;&nbsp;&nbsp; ~</Box>
             <div>
               <Style.Input ref={endProps.inputRef} {...endProps.inputProps} />
-              <Style.IconButton
-                icon={faChevronDown}
-                onChange={(e) => endDate.current.click()}
-              />
+              <Style.IconButton icon={faChevronDown} />
             </div>
           </Style.Calender>
         )}
