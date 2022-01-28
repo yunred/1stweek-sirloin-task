@@ -1,7 +1,7 @@
 import * as S from "./style";
 import Container from "Component/Container";
 import SelectImg from "Util/SelectImg";
-import React,{ useContext,useEffect,useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PDcontext } from "store/PDdata.js";
 
 /*
@@ -109,56 +109,85 @@ export const PIContent = (props) => {
   const context = useContext(PDcontext).PIData;
   const state = context.state;
   const setState = context.setState;
+  const [filterTagData, setFilterTagData] = useState();
   const [imgList, setImgList] = useState([]);
+  const [openFilterBox, setOpenFilterBox] = useState(false);
 
   useEffect(() => {
-    console.log("ProductInfo: ",state)
+    console.log("ProductInfo: ", state);
   }, [state]);
 
-  const handleProductCategory = (e,item) => {
+  useEffect(() => {
+    const filterTagCopyData = [...state.filterTagList];
 
+    setFilterTagData(filterTagCopyData);
+  }, []);
+
+  const handleProductCategory = (e, item) => {
     const index = e.target.value;
 
-    const newState = { ...state }
+    const newState = { ...state };
 
-    if(!newState.categoryList[index].checked){
-      newState.product.category.push(state.categoryList[index])
-      newState.categoryList[index].checked = !newState.categoryList[index].checked;
+    if (!newState.categoryList[index].checked) {
+      newState.product.category.push(newState.categoryList[index]);
+      newState.categoryList[index].checked =
+        !newState.categoryList[index].checked;
     } else {
-      const findIndex = newState.product.category.findIndex( el => el.idx === item.idx )
-      newState.product.category.splice(findIndex,1);
-      newState.categoryList[index].checked = !newState.categoryList[index].checked;
+      const findIndex = newState.product.category.findIndex(
+        (el) => el.idx === item.idx
+      );
+      newState.product.category.splice(findIndex, 1);
+      newState.categoryList[index].checked =
+        !newState.categoryList[index].checked;
     }
 
+    setState(newState);
+  };
+
+  const handleProductFilterTag = (item,index) => {
+
+    const newState = { ...state };
+
+    console.log(index)
+
+    if (!newState.filterTagList[index].checked) {
+      newState.product.filterTag.push(newState.filterTagList[index]);
+      newState.filterTagList[index].checked =
+        !newState.filterTagList[index].checked;
+    } else {
+      const findIndx = newState.product.filterTag.findIndex(
+        (el) => el.idx === item.idx
+      );
+      newState.product.filterTag.splice(findIndx, 1);
+      newState.filterTagList[index].checked = !newState.filterTagList[index].checked;
+    }
 
     setState(newState);
-  }
-  
-  const handleProductDescription = (e) => {
+  };
 
-    const newState = {...state }
+  const handleProductDescription = (e) => {
+    const newState = { ...state };
 
     newState.product.description = e.target.value;
 
-    setState(newState)
-  }
+    setState(newState);
+  };
 
   const handleProductName = (e) => {
-    const newState = {...state }
+    const newState = { ...state };
 
     newState.product.name = e.target.value;
 
-    setState(newState)
-  }
+    setState(newState);
+  };
 
   const handleProductThumbnail = () => {
-    const newState = {...state}
-  }
+    const newState = { ...state };
+  };
 
   const handleProductImg = () => {
-    const newState = { ...state }
-  }
-
+    const newState = { ...state };
+  };
 
   return (
     <S.ItemContainer>
@@ -166,10 +195,16 @@ export const PIContent = (props) => {
         <S.Title>카테고리</S.Title>
         <S.InnerContainer width={`500px`}>
           <S.ListContainer width={`50%`}>
-            {state.categoryList.map((item,index) => {
+            {state.categoryList.map((item, index) => {
               return (
                 <S.ListItem key={item.idx}>
-                  <S.Check type="checkbox" value={index} onClick={(e)=>{handleProductCategory(e,item)}}/>
+                  <S.Check
+                    type="checkbox"
+                    value={index}
+                    onClick={(e) => {
+                      handleProductCategory(e, item);
+                    }}
+                  />
                   {item.content}
                 </S.ListItem>
               );
@@ -189,11 +224,61 @@ export const PIContent = (props) => {
       </S.Item>
       <S.Item>
         <S.Title>필터 태그</S.Title>
-        <S.InnerContainer>
-          <S.InputContainer>
-            <input type="text" placeholder="필터태그를 검색해 주세요." />
+        <S.InnerContainer className="filterBox">
+          <S.InputContainer
+            onClick={() => {
+              setOpenFilterBox(!openFilterBox);
+            }}
+          >
+            <input
+              type="text"
+              placeholder="필터태그를 검색해 주세요."
+              readOnly
+            />
             <button>검색</button>
           </S.InputContainer>
+          {openFilterBox && (
+            <S.FilterTagBox>
+              <S.ListContainer className="filterList">
+                {filterTagData
+                  .filter((el) => {
+                    if (!el.checked) return el;
+                  })
+                  .map((item,index) => {
+                    return (
+                      <S.ListItem
+                        checked={item.checked}
+                        className="filterItem"
+                        onClick={() => {
+                          handleProductFilterTag(item,index);
+                        }}
+                        key={item.idx}
+                      >
+                        {item.content}
+                      </S.ListItem>
+                    );
+                  })}
+              </S.ListContainer>
+            </S.FilterTagBox>
+          )}
+          {!openFilterBox && state.product.filterTag.length > 0 && (
+            <S.FilterTagBox>
+              <S.ListContainer className="filterList">
+                {state.product.filterTag.map((item,index) => {
+                  return (
+                    <S.ListItem
+                      onClick={() => {
+                        handleProductFilterTag(item,index);
+                      }}
+                      key={item.idx}
+                    >
+                      {item.content}
+                    </S.ListItem>
+                  );
+                })}
+              </S.ListContainer>
+            </S.FilterTagBox>
+          )}
         </S.InnerContainer>
       </S.Item>
       <S.Item>
@@ -219,7 +304,9 @@ export const PIContent = (props) => {
           <S.InputContainer>
             <input
               type="text"
-              onChange={(e)=>{handleProductDescription(e)}}
+              onChange={(e) => {
+                handleProductDescription(e);
+              }}
               placeholder="상품 구성 소개 정보를 입력해 주세요."
             />
           </S.InputContainer>
@@ -238,11 +325,12 @@ export const PIContent = (props) => {
           이미지
         </S.Title>
         <S.InnerContainer>
-          <SelectImg/>
+          <SelectImg />
           <S.ListContainer>
-            {state.product.imgs.length > 0 && state.product.imgs.map((item) => {
-              return <S.ListItem key={item}>{item}</S.ListItem>;
-            })}
+            {state.product.imgs.length > 0 &&
+              state.product.imgs.map((item) => {
+                return <S.ListItem key={item}>{item}</S.ListItem>;
+              })}
           </S.ListContainer>
         </S.InnerContainer>
       </S.Item>
