@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as Style from "./style";
 import DateTime from "Util/DateTime";
 
-export const ProodctBox = (props) => {
+export const ProodctBoxSecond = (props) => {
   const [state, setState] = useState("");
   const [event, setEvent] = useState("");
 
@@ -22,22 +22,34 @@ export const ProodctBox = (props) => {
         <Style.Box>
           <Style.Input
             type="radio"
-            name="host_chk_first"
+            name="host_chk"
             value="auto"
             checked
+            onChange={(newValue) => {
+              setState(newValue);
+            }}
           />
           <span>제한없음</span>
         </Style.Box>
         <Style.Box>
-          <Style.Input type="radio" name="host_chk_first" value="select" />
+          <Style.Input
+            type="radio"
+            name="host_chk"
+            value="select"
+            onChange={(newValue) => {
+              setState(newValue);
+            }}
+          />
           <span>미판매</span>
         </Style.Box>
         <Style.Box>
           <Style.Input
             type="radio"
-            name="host_chk_first"
+            name="host_chk"
             value="third"
-            handleChange={handleChange}
+            onChange={(newValue) => {
+              setState(newValue);
+            }}
           />
           <span>노출 기간 설정</span>
         </Style.Box>
@@ -52,7 +64,7 @@ export const ProodctBox = (props) => {
 const PScontentBox = (props) => {
   return (
     <>
-      <ProodctBox name={<h4>상품 노출 기한</h4>} />
+      <ProodctBoxSecond name={<h4>상품 판매 기한</h4>} />
     </>
   );
 };
