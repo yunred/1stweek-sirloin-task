@@ -17,8 +17,8 @@ const App = () => {
       <Main>
         <PDdata>
           <ProductSalesperiod />
-          <PDOption />
           <ProductInfo />
+          <PDOption />
         </PDdata>
       </Main>
     </div>
