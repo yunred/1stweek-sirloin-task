@@ -3,7 +3,6 @@ import { PDcontext } from "store/PDdata.js";
 import Container from "Component/Container";
 import SelectImg from "Util/SelectImg";
 import * as S from "./style";
-
 /*
 optionSetter(
     [...optionSetList, {
@@ -18,7 +17,6 @@ optionSetter(
     }]
 }
 */
-
 export const PDOheader = () => {
   const context = useContext(PDcontext).OptionSetData;
   const state = context.state;
@@ -48,12 +46,10 @@ export const PDOheader = () => {
     </>
   );
 };
-
 const PDOContent = () => {
   const context = useContext(PDcontext).OptionSetData;
   const state = context.state;
   const setstate = context.setstate;
-
   return state.length === 0 ? (
     <S.DefaultScreen>
       <S.H3>옵션 세트를 추가하여 옵션을 구성해 주세요</S.H3>
@@ -68,7 +64,6 @@ const PDOContent = () => {
     })
   );
 };
-
 const OptionSet = (props) => {
   const index = props.index;
   const context = useContext(PDcontext).OptionSetData;
@@ -112,7 +107,6 @@ const OptionSet = (props) => {
     </>
   );
 };
-
 const PDthumbnail = (props) => {
   const index = props.index;
   const context = useContext(PDcontext).OptionSetData;
@@ -124,7 +118,6 @@ const PDthumbnail = (props) => {
     newstate[index].optionImg = imgList;
     setstate(newstate);
   }, [imgList]);
-
   return state[index].optionImg.length === 0 ? (
     <S.Imgplaceholder>
       <SelectImg imgList={imgList} imgSetter={setImgList} />
@@ -135,14 +128,13 @@ const PDthumbnail = (props) => {
     </S.Imgholder>
   );
 };
-
 const Option = (props) => {
   const context = useContext(PDcontext).OptionSetData;
   const state = context.state;
   const setstate = context.setstate;
   const { OSidx, OPidx} = props;
   const OptionData= state[OSidx].optionList[OPidx]
-  console.log(OptionData);
+  //console.log(OptionData);
   const optionValue = OptionData.optionValue;
   const [inputData, setInputData] = useState(optionValue);
   const HandleChange = (e) => {
@@ -162,7 +154,6 @@ const Option = (props) => {
     newstate[OSidx].optionList[OPidx].optionValue = inputData;
     setstate(newstate);
   }, [inputData]);
-
   return (
     <>
       <S.Buttonholder>
@@ -171,7 +162,7 @@ const Option = (props) => {
             const newstate = [...state];
             const newopList = newstate[OSidx].optionList;
             newopList.splice(OPidx, 1);
-            console.log(newopList);
+            //console.log(newopList);
             if (newopList.length === 0) {
               newstate.splice(OSidx, 1);
               setstate(newstate);
@@ -262,7 +253,6 @@ const Option = (props) => {
           }
         )}
       </S.AddtionalContainer>
-
       <S.AppendAddtional
         onClick={() => {
           const newstate = [...state];
@@ -281,11 +271,10 @@ const Option = (props) => {
 
 const Additonal = (props) => {
   const { OSidx, OPidx, addtionalidx } = props;
-  console.log(OSidx, OPidx, addtionalidx);
+  //console.log(OSidx, OPidx, addtionalidx);
   const context = useContext(PDcontext).OptionSetData;
   const state = context.state;
   const setstate = context.setstate;
-
   return (
     <S.EachAddtional>
       <S.AddtionalNameInput
@@ -334,7 +323,7 @@ const Additonal = (props) => {
 
 const PDoption = () => {
   const context = useContext(PDcontext).OptionSetData;
-  console.log(context.state);
+  //console.log(context.state);
   return (
     <Container
       ContainerHeader={<PDOheader />}
@@ -342,5 +331,4 @@ const PDoption = () => {
     />
   );
 };
-
 export default PDoption;

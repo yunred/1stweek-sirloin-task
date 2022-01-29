@@ -23,6 +23,11 @@ export const NavMenu = styled.li`
     padding: 12px 20px;
     color: rgb(53, 47, 110);
     font-size: 16px;
+    height: 4em;
+    box-sizing: border-box;
+    div{
+      margin-top:0.5em;
+    }
   }
   &:nth-child(n + 6):nth-child(-n + 7) {
     background: rgb(229, 229, 229);

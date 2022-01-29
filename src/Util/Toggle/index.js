@@ -2,7 +2,6 @@ import * as S from 'Util/Toggle/style.js';
 
 const Toggle = (props) => {
     const {state, setState} = props;
-    console.log(state);
     return(
     <>
     <S.CheckBoxWrapper>

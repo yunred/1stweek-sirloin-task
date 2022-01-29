@@ -117,7 +117,7 @@ export const PIContent = (props) => {
   const [stock, setStock] = useState(0);
 
   useEffect(() => {
-    console.log("ProductInfo: ", state);
+    //console.log("ProductInfo: ", state);
   }, [state]);
 
   useEffect(() => {
@@ -157,7 +157,7 @@ export const PIContent = (props) => {
       const target = [...productImgList][0]
       newState.product.imgs.unshift(target);
       setState(newState);
-      console.log(newState)
+      //console.log(newState)
       setProductImgList([]);
     }
   },[productImgList]);
@@ -347,7 +347,10 @@ export const PIContent = (props) => {
       </S.Item>
       <S.Item>
         <S.Title>필터 태그</S.Title>
-        <S.InnerContainer className="filterBox">
+        <S.InnerContainer className="filterBox"
+        onMouseEnter={()=>{setOpenFilterBox(true)}}
+        onMouseLeave={()=>{setOpenFilterBox(false)}}
+        >
           <S.InputContainer>
             <input
               type="text"
@@ -399,7 +402,7 @@ export const PIContent = (props) => {
               </S.FilterTagBox>
             </S.OverFlowContainer>
           )}
-          {!openFilterBox && state.product.filterTag.length > 0 && (
+          {state.product.filterTag.length > 0 && (
             <S.OverFlowContainer>
               <S.FilterTagBox>
                 {state.product.filterTag.length !== 0 && (

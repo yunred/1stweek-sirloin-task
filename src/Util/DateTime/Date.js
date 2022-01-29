@@ -13,10 +13,11 @@ const Calendar = (props) => {
     setState(startDate);
   }, [startDate]);
 
-  console.log(state);
+  //console.log(state);
 
   return (
     <MyDatePicker
+      
       dateFormat="yyyy.MM.dd"
       selected={startDate}
       closeOnScroll={true}
