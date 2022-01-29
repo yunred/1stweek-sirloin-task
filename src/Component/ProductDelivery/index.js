@@ -21,10 +21,56 @@ export const PDeliveryHeader = () => {
   return <S.HeaderContainer>상품 배송 설정</S.HeaderContainer>;
 };
 export const PDeliveryContent = () => {
-  const deliveryContext = useContext(PDcontext).PDelivery;
+  const deliveryContext = useContext(PDcontext).PDInfo;
   const deliveryState = deliveryContext.state;
   const setDeliveryState = deliveryContext.setState;
-  const [state, setState] = useState('');
+
+  const [periodState, setPeriodState] = useState('');
+  const [earlyMorningState, setEarlyMorningState] = useState('');
+  const [normalState, setNormalState] = useState('');
+
+  useEffect(() => {
+    const newState = { ...deliveryState };
+    newState.earlyMorningDate = earlyMorningState;
+    setDeliveryState(newState);
+    console.log(deliveryState);
+    if (deliveryState.earlyMorningState < deliveryState.orderPeriod[1]) {
+      if (window.confirm('주문 시간 이후로 출고일을 지정해주세요') === true) {
+        const newState = { ...deliveryState };
+        newState.earlyMorningDate = '';
+        setDeliveryState(newState);
+      } else {
+        const newState = { ...deliveryState };
+        newState.earlyMorningDate = '';
+        setDeliveryState(newState);
+      }
+    }
+  }, [earlyMorningState]);
+
+  useEffect(() => {
+    const newState = { ...deliveryState };
+    newState.normalDate = normalState;
+    setDeliveryState(newState);
+    console.log(deliveryState);
+    if (deliveryState.normalState < deliveryState.orderPeriod[1]) {
+      if (window.confirm('주문 시간 이후로 출고일을 지정해주세요') === true) {
+        const newState = { ...deliveryState };
+        newState.normalDate = '';
+        setDeliveryState(newState);
+      } else {
+        const newState = { ...deliveryState };
+        newState.normalDate = '';
+        setDeliveryState(newState);
+      }
+    }
+  }, [normalState]);
+
+  useEffect(() => {
+    const newState = { ...deliveryState };
+    newState.orderPeriod = periodState;
+    setDeliveryState(newState);
+    console.log(deliveryState);
+  }, [periodState[1]]);
 
   useEffect(() => {
     if (
@@ -67,11 +113,6 @@ export const PDeliveryContent = () => {
                   const newState = { ...deliveryState };
                   newState.isDesignated = !newState.isDesignated;
                   setDeliveryState(newState);
-                  // if (deliveryState.isDesignated === true) {
-                  //   const editState = { ...deliveryState };
-                  //   editState.ispreOrder = false;
-                  //   setDeliveryState(editState);
-                  // }
                 }}
               />
             </ST.CheckBoxWrapper>
@@ -121,20 +162,23 @@ export const PDeliveryContent = () => {
             </ST.CheckBoxWrapper>
             <div className="flex bottom_margin">
               <S.PreOrderSpan>주문시간</S.PreOrderSpan>
-              <DateTime state={state} setState={setState} />
+              <DateTime state={periodState} setState={setPeriodState} />
             </div>
             <div className="flex bottom_margin">
               <div className="flex margin-right-more">
                 <S.PreOrderSpan className="margin-right">
                   새벽배송
                 </S.PreOrderSpan>
-                <Date state={state} setState={setState} />
+                <Date
+                  state={earlyMorningState}
+                  setState={setEarlyMorningState}
+                />
               </div>
               <div className="flex">
                 <S.PreOrderSpan className="margin-right">
                   일반배송
                 </S.PreOrderSpan>
-                <Date state={state} setState={setState} />
+                <Date state={normalState} setState={setNormalState} />
               </div>
             </div>
           </S.ContentBox>
