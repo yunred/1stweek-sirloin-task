@@ -1,64 +1,34 @@
 import React, { useContext } from "react";
 import * as Style from "./style";
-import DateTime from "Util/DateTime";
+import RadioButton from "Util/RadioButton";
 import { PDcontext } from "store/PDdata.js";
 
-export const ProodctBoxSecond = (props) => {
-  const context = useContext(PDcontext).PScontentBoxSecond;
+export const ProodctBox = (props) => {
+  const context = useContext(PDcontext).PScontentBox;
   const state = context.state;
-  const setState = context.setState;
+  // const setState = context.setState;
+  // const acitve = context.state;
+  // const minDateTime = context.state;
+  // const maxDateTime = context.state;
+  // const callback = context.state;
   console.log(state);
 
   return (
-    <Style.ProductListContainer>
-      <Style.TitleBox>{props.name}</Style.TitleBox>
-      <Style.ContentsBox>
-        <Style.Box>
-          <Style.Input
-            type="radio"
-            name="host_chk"
-            value="auto"
-            checked
-            onChange={(newValue) => {
-              setState(newValue);
-            }}
-          />
-          <span>제한없음</span>
-        </Style.Box>
-        <Style.Box>
-          <Style.Input
-            type="radio"
-            name="host_chk"
-            value="select"
-            onChange={(newValue) => {
-              setState(newValue);
-            }}
-          />
-          <span>미판매</span>
-        </Style.Box>
-        <Style.Box>
-          <Style.Input
-            type="radio"
-            name="host_chk"
-            value="third"
-            onChange={(newValue) => {
-              setState(newValue);
-            }}
-          />
-          <span>노출 기간 설정</span>
-        </Style.Box>
-        <Style.Box>
-          <DateTime state={state} setState={setState} />
-        </Style.Box>
-      </Style.ContentsBox>
-    </Style.ProductListContainer>
+    <Style.Container>
+      <Style.TitleBox>
+        <h4>{props.name}</h4>
+      </Style.TitleBox>
+      <Style.SelectRadio id="group2">
+        <RadioButton />
+      </Style.SelectRadio>
+    </Style.Container>
   );
 };
 
 const PScontentBox = (props) => {
   return (
     <>
-      <ProodctBoxSecond name={<h4>상품 판매 기한</h4>} />
+      <ProodctBox name={<h4>상품 노출 기한</h4>} />
     </>
   );
 };

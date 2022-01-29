@@ -1,12 +1,12 @@
-import React, { createContext, useState } from 'react';
-import PIData from 'Component/ProductInfo/data';
-import PDImage from 'Component/ProductImage/data';
-import PDInfo from 'Component/ProductDelivery/data';
-import PIOrder from 'Component/ProductInfoNotice/data';
+import React, { createContext, useState } from "react";
+import PIData from "Component/ProductInfo/data";
+import PDImage from "Component/ProductImage/data";
+import PDInfo from "Component/ProductDelivery/data";
+import PIOrder from "Component/ProductInfoNotice/data";
 
 export const PDcontext = createContext();
 
-const PDdata = props => {
+const PDdata = (props) => {
   const [OptionSetList, setOptionLIst] = useState([]);
   const [ProductInfoList, setProductInfoLIst] = useState(PIData);
   const [ProductInfoOrder, setProductInfoOrder] = useState([PIOrder]);
