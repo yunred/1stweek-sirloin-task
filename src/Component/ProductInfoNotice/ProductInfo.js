@@ -31,6 +31,7 @@ const ProductInfoNOticeInput = ({
               <div className="title">
                 <span>정보고시 {idx + 1}</span>
                 <button
+                  className="order_delete_btn"
                   onClick={() => {
                     const newState = [...orderState];
                     newState.splice(idx, 1);
@@ -140,6 +141,7 @@ const ProductInfoNOticeInput = ({
                           }}
                         />
                         <button
+                          className="more_info_delete_btn"
                           onClick={() => {
                             const newState = [...orderState];
                             newState[idx].moreinfo.splice(moreinfoidx, 1);

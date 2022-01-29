@@ -1,10 +1,12 @@
-import React, { createContext, useState } from "react";
-import PIData from "Component/ProductInfo/data";
-import PDImage from "Component/ProductImage/data";
+import React, { createContext, useState } from 'react';
+import PIData from 'Component/ProductInfo/data';
+import PDImage from 'Component/ProductImage/data';
+import PDInfo from 'Component/ProductDelivery/data';
+import PIOrder from 'Component/ProductInfoNotice/data';
 
 export const PDcontext = createContext();
 
-const PDdata = (props) => {
+const PDdata = props => {
   const [OptionSetList, setOptionLIst] = useState([]);
   const [ProductInfoList, setProductInfoLIst] = useState(PIData);
   const [ProductInfoOrder, setProductInfoOrder] = useState([PIOrder]);
@@ -13,6 +15,7 @@ const PDdata = (props) => {
   const [ETC, setETC] = useState(false);
   const [PScontentBox, setPScontentBox] = useState();
   const [PScontentBoxSecond, setPScontentBoxSecond] = useState();
+  const [ProductDelivery, setProductDelibery] = useState(PDInfo);
 
   const PDdata = {
     OptionSetData: {
@@ -47,20 +50,15 @@ const PDdata = (props) => {
       state: PScontentBoxSecond,
       setState: setPScontentBoxSecond,
     },
+    PDInfo: {
+      state: ProductDelivery,
+      setState: setProductDelibery,
+    },
   };
 
   return (
     <PDcontext.Provider value={PDdata}>{props.children}</PDcontext.Provider>
   );
-};
-
-const PIOrder = {
-  productname: "",
-  origin: "",
-  rating: "",
-  productstorage: "",
-  category: "",
-  moreinfo: [],
 };
 
 export default PDdata;
