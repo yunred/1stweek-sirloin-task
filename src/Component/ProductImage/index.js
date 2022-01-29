@@ -25,7 +25,7 @@ const PDIntroduceContent = () => {
   const setState = PDImageContext.setState;
 
   useEffect(() => {
-    console.log("PDImage: ", state);
+    //console.log("PDImage: ", state);
   }, [state]);
 
 

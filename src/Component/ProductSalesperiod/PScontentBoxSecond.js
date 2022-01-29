@@ -7,7 +7,7 @@ export const ProodctBoxSecond = (props) => {
   const context = useContext(PDcontext).PScontentBoxSecond;
   const state = context.state;
   const setState = context.setState;
-  console.log(state);
+  //console.log(state);
 
   return (
     <Style.ProductListContainer>
