@@ -17,6 +17,7 @@ const Calendar = (props) => {
 
   return (
     <MyDatePicker
+      
       dateFormat="yyyy.MM.dd"
       selected={startDate}
       closeOnScroll={true}
