@@ -7,7 +7,7 @@ export const ProodctBox = (props) => {
   const context = useContext(PDcontext).PScontentBox;
   const state = context.state;
   const setState = context.setState;
-  console.log(state);
+  //console.log(state);
 
   const [value, setValue] = useState([true, false, false]);
 

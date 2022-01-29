@@ -117,7 +117,7 @@ export const PIContent = (props) => {
   const [stock, setStock] = useState(0);
 
   useEffect(() => {
-    console.log("ProductInfo: ", state);
+    //console.log("ProductInfo: ", state);
   }, [state]);
 
   useEffect(() => {
@@ -157,7 +157,7 @@ export const PIContent = (props) => {
       const target = [...productImgList][0]
       newState.product.imgs.unshift(target);
       setState(newState);
-      console.log(newState)
+      //console.log(newState)
       setProductImgList([]);
     }
   },[productImgList]);

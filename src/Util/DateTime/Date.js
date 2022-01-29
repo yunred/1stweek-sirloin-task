@@ -13,7 +13,7 @@ const Calendar = (props) => {
     setState(startDate);
   }, [startDate]);
 
-  console.log(state);
+  //console.log(state);
 
   return (
     <MyDatePicker

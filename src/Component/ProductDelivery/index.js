@@ -88,7 +88,7 @@ export const PDeliveryContent = () => {
   const deliveryState = deliveryContext.state;
   const setDeliveryState = deliveryContext.setState;
 
-  console.log(deliveryState);
+  //console.log(deliveryState);
 
   const [startPeriodState, setStartPeriodState] = useState(deliveryState.orderPeriodStart);
   const [endPeriodState, setEndPeriodState] = useState(deliveryState.orderPeriodEnd);
@@ -98,7 +98,6 @@ export const PDeliveryContent = () => {
   useEffect(() => {
     if (Number(deliveryState.orderPeriodEnd) > Number(earlyMorningState)){
       alert('주문시간 이후로 출고일을 지정해주세요.');
-      return;
     }
     const newState = { ...deliveryState };
     newState.earlyMorningDate = earlyMorningState;
@@ -108,7 +107,6 @@ export const PDeliveryContent = () => {
   useEffect(() => {
     if (Number(deliveryState.orderPeriodEnd) > Number(normalState)){
       alert('주문시간 이후로 출고일을 지정해주세요.');
-      return;
     }
     const newState = { ...deliveryState };
     newState.normalDate = normalState;
@@ -119,7 +117,7 @@ export const PDeliveryContent = () => {
     const newState = { ...deliveryState };
     newState.orderPeriodStart = startPeriodState;
     setDeliveryState(newState);
-    console.log(deliveryState);
+    //console.log(deliveryState);
   }, [startPeriodState]);
 
 // toggle 조작 start
