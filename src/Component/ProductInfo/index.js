@@ -231,7 +231,7 @@ export const PIContent = (props) => {
 
   const handleKeyUp = (e) => {
     if (e.key === "Enter") {
-      // setOpenFilterBox(true);
+      setOpenFilterBox(true);
       handleSearch();
     }
   };
