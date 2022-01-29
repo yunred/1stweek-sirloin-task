@@ -195,6 +195,9 @@ export const FilterTagBox = styled.div`
 
   &.filterContainer{
     animation: down 0.5s ease;
+    li{
+      animation: down 0.5s ease;
+    }
   }
   
   .filterList {
@@ -214,6 +217,7 @@ export const FilterTagBox = styled.div`
       height: 30px;
       border-radius: 4px;
       cursor: pointer;
+      animation: up 0.5s ease;
     }
   }
 
