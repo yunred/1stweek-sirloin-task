@@ -2,9 +2,10 @@ const PDInfo = {
   isDesignated: false,
   isPickup: false,
   ispreOrder: false,
-  orderPeriod: [],
-  earlyMorningDate: '',
-  normalDate: '',
+  orderPeriodStart: new Date(),
+  orderPeriodEnd: new Date(),
+  earlyMorningDate: new Date(),
+  normalDate: new Date(),
 };
 
 export default PDInfo;

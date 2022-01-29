@@ -1,6 +1,7 @@
 import * as S from './style';
 import Container from 'Component/Container';
 import DateTime from 'Util/DateTime';
+import DateTimePickers from 'Util/DateTimePicker';
 import Date from 'Util/DateTime/Date';
 import React, { useContext, useEffect, useState } from 'react';
 import { PDcontext } from 'store/PDdata';
@@ -21,105 +22,43 @@ const ProductDelivery = () => {
 export const PDeliveryHeader = () => {
   return <S.HeaderContainer>상품 배송 설정</S.HeaderContainer>;
 };
-export const PDeliveryContent = () => {
+
+const PDdesign = () => {
   const deliveryContext = useContext(PDcontext).PDInfo;
   const deliveryState = deliveryContext.state;
   const setDeliveryState = deliveryContext.setState;
+  return(
+    <S.Content>
+            <S.titleBox>
+              <S.titleSpan>사용자 배송일 출발일 지정</S.titleSpan>
+            </S.titleBox>
+            <S.ContentBox>
+              <ST.CheckBoxWrapper>
+                <ST.CheckBox
+                  checked={deliveryState.isDesignated}
+                  id="checkbox"
+                  type="checkbox"
+                />
+                <ST.CheckBoxLabel
+                  htmlFor="checkbox"
+                  onClick={() => {
+                    const newState = { ...deliveryState };
+                    newState.isDesignated = !newState.isDesignated;
+                    setDeliveryState(newState);
+                  }}
+                />
+              </ST.CheckBoxWrapper>
+            </S.ContentBox>
+          </S.Content>
+  );
+}
 
-  const [periodState, setPeriodState] = useState('');
-  const [earlyMorningState, setEarlyMorningState] = useState('');
-  const [normalState, setNormalState] = useState('');
-
-  useEffect(() => {
-    const newState = { ...deliveryState };
-    newState.earlyMorningDate = earlyMorningState;
-    setDeliveryState(newState);
-    console.log(deliveryState);
-    if (deliveryState.earlyMorningState < deliveryState.orderPeriod[1]) {
-      if (window.confirm('주문 시간 이후로 출고일을 지정해주세요') === true) {
-        const newState = { ...deliveryState };
-        newState.earlyMorningDate = '';
-        setDeliveryState(newState);
-      } else {
-        const newState = { ...deliveryState };
-        newState.earlyMorningDate = '';
-        setDeliveryState(newState);
-      }
-    }
-  }, [earlyMorningState]);
-
-  useEffect(() => {
-    const newState = { ...deliveryState };
-    newState.normalDate = normalState;
-    setDeliveryState(newState);
-    console.log(deliveryState);
-    if (deliveryState.normalState < deliveryState.orderPeriod[1]) {
-      if (window.confirm('주문 시간 이후로 출고일을 지정해주세요') === true) {
-        const newState = { ...deliveryState };
-        newState.normalDate = '';
-        setDeliveryState(newState);
-      } else {
-        const newState = { ...deliveryState };
-        newState.normalDate = '';
-        setDeliveryState(newState);
-      }
-    }
-  }, [normalState]);
-
-  useEffect(() => {
-    const newState = { ...deliveryState };
-    newState.orderPeriod = periodState;
-    setDeliveryState(newState);
-    console.log(deliveryState);
-  }, [periodState[1]]);
-
-  useEffect(() => {
-    if (
-      deliveryState.isDesignated === true ||
-      deliveryState.isPickup === true
-    ) {
-      const editState = { ...deliveryState };
-      editState.ispreOrder = false;
-      setDeliveryState(editState);
-    }
-  }, [deliveryState.isDesignated, deliveryState.isPickup]);
-
-  useEffect(() => {
-    if (deliveryState.ispreOrder === true) {
-      console.log('gd');
-      const editState = { ...deliveryState };
-      editState.isDesignated = false;
-      editState.isPickup = false;
-      setDeliveryState(editState);
-    }
-  }, [deliveryState.ispreOrder]);
-
-  return (
-    <>
-      <div className="container">
-        <S.Content>
-          <S.titleBox>
-            <S.titleSpan>사용자 배송일 출발일 지정</S.titleSpan>
-          </S.titleBox>
-          <S.ContentBox>
-            <ST.CheckBoxWrapper>
-              <ST.CheckBox
-                checked={deliveryState.isDesignated}
-                id="checkbox"
-                type="checkbox"
-              />
-              <ST.CheckBoxLabel
-                htmlFor="checkbox"
-                onClick={() => {
-                  const newState = { ...deliveryState };
-                  newState.isDesignated = !newState.isDesignated;
-                  setDeliveryState(newState);
-                }}
-              />
-            </ST.CheckBoxWrapper>
-          </S.ContentBox>
-        </S.Content>
-        <S.Content className="bottom_border">
+const PDpickup = () => {
+  const deliveryContext = useContext(PDcontext).PDInfo;
+  const deliveryState = deliveryContext.state;
+  const setDeliveryState = deliveryContext.setState;
+  return(
+    <S.Content className="bottom_border">
           <S.titleBox>
             <S.titleSpan>방문 수령</S.titleSpan>
           </S.titleBox>
@@ -141,6 +80,75 @@ export const PDeliveryContent = () => {
             </ST.CheckBoxWrapper>
           </S.ContentBox>
         </S.Content>
+  )
+}
+
+export const PDeliveryContent = () => {
+  const deliveryContext = useContext(PDcontext).PDInfo;
+  const deliveryState = deliveryContext.state;
+  const setDeliveryState = deliveryContext.setState;
+
+  console.log(deliveryState);
+
+  const [startPeriodState, setStartPeriodState] = useState(deliveryState.orderPeriodStart);
+  const [endPeriodState, setEndPeriodState] = useState(deliveryState.orderPeriodEnd);
+  const [earlyMorningState, setEarlyMorningState] = useState(deliveryState.earlyMorningDate);
+  const [normalState, setNormalState] = useState(deliveryState.nomalDate);
+
+  useEffect(() => {
+    if (Number(deliveryState.orderPeriodEnd) > Number(earlyMorningState)){
+      alert('주문시간 이후로 출고일을 지정해주세요.');
+      return;
+    }
+    const newState = { ...deliveryState };
+    newState.earlyMorningDate = earlyMorningState;
+    setDeliveryState(newState);
+  }, [earlyMorningState]);
+
+  useEffect(() => {
+    if (Number(deliveryState.orderPeriodEnd) > Number(normalState)){
+      alert('주문시간 이후로 출고일을 지정해주세요.');
+      return;
+    }
+    const newState = { ...deliveryState };
+    newState.normalDate = normalState;
+    setDeliveryState(newState);
+  }, [normalState]);
+
+  useEffect(() => {
+    const newState = { ...deliveryState };
+    newState.orderPeriodStart = startPeriodState;
+    setDeliveryState(newState);
+    console.log(deliveryState);
+  }, [startPeriodState]);
+
+// toggle 조작 start
+  useEffect(() => {
+    if (
+      deliveryState.isDesignated === true ||
+      deliveryState.isPickup === true
+    ) {
+      const editState = { ...deliveryState };
+      editState.ispreOrder = false;
+      setDeliveryState(editState);
+    }
+  }, [deliveryState.isDesignated, deliveryState.isPickup]);
+
+  useEffect(() => {
+    if (deliveryState.ispreOrder === true) {
+      const editState = { ...deliveryState };
+      editState.isDesignated = false;
+      editState.isPickup = false;
+      setDeliveryState(editState);
+    }
+  }, [deliveryState.ispreOrder]);
+// toggle 조작 end
+
+  return (
+    <>
+      <div className="container">
+        <PDdesign/>
+        <PDpickup/>
         <S.Content>
           <S.titleBox>
             <S.titleSpan>선 주문 예약 배송</S.titleSpan>
@@ -163,7 +171,8 @@ export const PDeliveryContent = () => {
             </ST.CheckBoxWrapper>
             <div className="flex bottom_margin">
               <S.PreOrderSpan>주문시간</S.PreOrderSpan>
-              <DateTime state={periodState} setState={setPeriodState} />
+              <DateTimePickers state={startPeriodState} setState={setStartPeriodState} acitve={deliveryState.ispreOrder}/>
+              <DateTimePickers state={endPeriodState} setState={setEndPeriodState} acitve={deliveryState.ispreOrder}/>
             </div>
             <div className="flex bottom_margin">
               <div className="flex margin-right-more">

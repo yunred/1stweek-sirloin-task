@@ -142,7 +142,6 @@ const Option = (props) => {
   const setstate = context.setstate;
   const { OSidx, OPidx} = props;
   const OptionData= state[OSidx].optionList[OPidx]
-  console.log(OptionData);
   const optionValue = OptionData.optionValue;
   const [inputData, setInputData] = useState(optionValue);
   const HandleChange = (e) => {
@@ -171,7 +170,6 @@ const Option = (props) => {
             const newstate = [...state];
             const newopList = newstate[OSidx].optionList;
             newopList.splice(OPidx, 1);
-            console.log(newopList);
             if (newopList.length === 0) {
               newstate.splice(OSidx, 1);
               setstate(newstate);
@@ -281,7 +279,6 @@ const Option = (props) => {
 
 const Additonal = (props) => {
   const { OSidx, OPidx, addtionalidx } = props;
-  console.log(OSidx, OPidx, addtionalidx);
   const context = useContext(PDcontext).OptionSetData;
   const state = context.state;
   const setstate = context.setstate;
@@ -334,7 +331,6 @@ const Additonal = (props) => {
 
 const PDoption = () => {
   const context = useContext(PDcontext).OptionSetData;
-  console.log(context.state);
   return (
     <Container
       ContainerHeader={<PDOheader />}
