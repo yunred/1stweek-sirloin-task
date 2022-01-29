@@ -12,7 +12,6 @@ import ProductImage from 'Component/ProductImage';
 import ETC from 'Component/ETC';
 
 const App = () => {
-  console.log(date);
   return (
     <div className="App">
       <GlobalStyle />
