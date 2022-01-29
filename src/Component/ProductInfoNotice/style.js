@@ -4,9 +4,8 @@ export const ProductInfoNoticeContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px;
+  padding: 0.5em;
   font-size: 1.3rem;
-  width: 70%;
   margin: 0 auto;
   input,
   .more_button {

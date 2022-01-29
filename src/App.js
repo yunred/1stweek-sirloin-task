@@ -10,8 +10,12 @@ import ProductDelivery from 'Component/ProductDelivery';
 import PDMileage from 'Component/PDMileage';
 import ProductImage from 'Component/ProductImage';
 import ETC from 'Component/ETC';
+import DateTimePickers from 'Util/DateTimePicker';
+import { useState } from "react";
 
 const App = () => {
+  const [date, setDate] = useState('');
+  console.log(date);
   return (
     <div className="App">
       <GlobalStyle />
@@ -27,6 +31,7 @@ const App = () => {
           <PDMileage/>
           <ETC/>
         </PDdata>
+        <DateTimePickers state={date} setState= {setDate} acitve={true}/>
       </Main>
     </div>
   );
