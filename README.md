@@ -1,8 +1,8 @@
 # 1주차 과제 설로인 기업과제 상품 등록 페이지
 
-## [GO DEMO🚀]()
+## [GO DEMO🚀](https://condescending-leakey-a6e381.netlify.app/)
 
-url =
+url = https://condescending-leakey-a6e381.netlify.app/
 
 ## MEMBER
 
