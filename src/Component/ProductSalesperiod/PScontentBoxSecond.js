@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as Style from "./style";
 import RadioButton from "Util/RadioButton";
 import { PDcontext } from "store/PDdata.js";
@@ -6,12 +6,21 @@ import { PDcontext } from "store/PDdata.js";
 export const ProodctBox = (props) => {
   const context = useContext(PDcontext).PScontentBox;
   const state = context.state;
-  // const setState = context.setState;
-  // const acitve = context.state;
-  // const minDateTime = context.state;
-  // const maxDateTime = context.state;
-  // const callback = context.state;
+  const setState = context.setState;
   console.log(state);
+
+  const [value, setValue] = useState([true, false, false]);
+
+  useEffect(() => {
+    const newState = { ...state };
+    if (value[0]) {
+      newState.showPeriod = "제한 없음";
+    } else if (value[1]) {
+      newState.showPeriod = "미판매";
+    } else {
+    }
+    setState(newState);
+  }, [value]);
 
   return (
     <Style.Container>
@@ -28,7 +37,7 @@ export const ProodctBox = (props) => {
 const PScontentBox = (props) => {
   return (
     <>
-      <ProodctBox name={<h4>상품 노출 기한</h4>} />
+      <ProodctBox name={<h4>상품 판매 기한</h4>} />
     </>
   );
 };

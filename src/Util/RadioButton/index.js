@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import DateTimePickers from "Util/DateTimePicker";
 import Box from "@mui/material/Box";
 import * as Style from "./style";
@@ -7,21 +7,37 @@ const RedioButton = (props) => {
   const [startDate, setstartDate] = useState([null, null]);
   const [endDate, setendDate] = useState([null, null]);
 
+  const value = props.value;
+  const setValue = props.setValue;
+
   const [clickedCondition, setclickedCondition] = useState({
     selectValue: "제한 없음",
   });
   const [periodsData, setPeriodData] = useState(`상품 판매 기한 : 제한 없음`);
 
-  const PeriodChange = (e) => {
-    setPeriodData(`상품 판매 기한 : ${e.target.value}`);
-    console.log(e.target.value);
-    setclickedCondition({
-      selectValue: e.target.value,
-    });
+  const HandleValue = (e) => {
+    console.log(e);
+    console.log(e.target.value, value);
+    if (e.target.value === "제한 없음") {
+      setValue([true, false, false]);
+    } else if (e.target.value === "미판매") {
+      setValue([false, true, false]);
+    } else {
+      setValue([false, false, true]);
+    }
   };
-  console.log(periodsData);
-  console.log(`시작 날짜: ${startDate}`);
-  console.log(`마지막 날짜: ${endDate}`);
+
+  // const PeriodChange = (e) => {
+  //   setPeriodData(`상품 판매 기한 : ${e.target.value}`);
+  //   console.log(e.target.value);
+  //   setclickedCondition({
+  //     selectValue: e.target.value,
+  //   });
+  // };
+  // console.log(periodsData);
+  // console.log(`시작 날짜: ${startDate}`);
+  // console.log(`마지막 날짜: ${endDate}`);
+
   return (
     <Style.ProductListContainer>
       <Style.ContentsBox>
@@ -31,8 +47,11 @@ const RedioButton = (props) => {
             type="radio"
             name="group2"
             value="제한 없음"
-            checked={clickedCondition.selectValue === "제한 없음" ? true : null}
-            onChange={PeriodChange}
+            checked
+            // checked={
+            //   clickedCondition.selectValue === "제한 없음" ? true : false
+            // }
+            onChange={useCallback((e) => HandleValue(e))}
           />
           <label for="periodShow">
             <span>제한 없음</span>
@@ -44,8 +63,9 @@ const RedioButton = (props) => {
             type="radio"
             name="group2"
             value="미판매"
-            checked={clickedCondition.selectValue === "미판매" ? true : null}
-            onChange={PeriodChange}
+            // checked={value[1] === undefined ? true : value[1]}
+            // checked={clickedCondition.selectValue === "미판매" ? true : false}
+            onChange={useCallback((e) => HandleValue(e))}
           />
           <label for="periodHide">
             <span>미판매</span>
@@ -57,8 +77,11 @@ const RedioButton = (props) => {
             type="radio"
             name="group2"
             value="판매 기간 설정"
-            checked={clickedCondition.selectValue === "판매 기간 설정"}
-            onChange={PeriodChange}
+            // checked={value[2] === undefined ? true : value[2]}
+            // checked={
+            //   clickedCondition.selectValue === "판매 기간 설정" ? true : false
+            // }
+            onChange={useCallback((e) => HandleValue(e))}
           />
           <label for="periodSetting">
             <span>판매 기간 설정</span>

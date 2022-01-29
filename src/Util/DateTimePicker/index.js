@@ -4,6 +4,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateTimePicker from "@mui/lab/DateTimePicker";
 
 const DateTimePickers = (props) => {
+  const setValue = props.setValue;
   const { state, setState, acitve, minDateTime, maxDateTime, callback } = props;
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -16,6 +17,7 @@ const DateTimePickers = (props) => {
         disabled={!acitve}
         onChange={(newValue) => {
           setState(newValue);
+          setValue([false, true, false]);
         }}
         minDateTime={minDateTime}
         maxDateTime={maxDateTime}
