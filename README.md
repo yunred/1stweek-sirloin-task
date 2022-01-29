@@ -10,7 +10,11 @@ url =
 | ------ | ------ | ------ | ------ |
 | 신원규 | 김서윤 | 지연비 | 권영채 |
 
-## 프로젝트 구조
+## 이슈 정리
+
+### 다계층 구조
+
+우리팀은 각 Component에서 `Container`를 하위 컴포넌트로 하고 그 안에서 `Header`와 `Content` 를 하위 컴포넌트로 하는 구조를 선택하였습니다.
 
 ```js
 // 모든 컴포넌트는 Container안의 Header + Content 구조로 구성되어 있습니다.
@@ -36,10 +40,74 @@ url =
 ----- ETC/
 ```
 
-<details>
+각 컴포넌트들의 일관적 구조를 찾을 수 있었고, 재사용성의 극대화를 위한 선택이였습니다. 하지만 각 Component의 state들을 공유해야 했고, 각각의 props들이 전달되면서 props의 추적이 어려워지는 props Drilling 문제에 직면하게 되었습니다. 전역 state 관리를 위한 방법이 필요하다고 느꼈습니다.
+
+### How to Control Global State
+
+본 프로젝트에서는 각 컴포넌트 마다 공유하는 state가 있습니다. 때문에 효율적인 전역 State 관리가 필요했고, 우리팀은 React에서 제공하는 `ContextAPI`를 사용하기로 결정했습니다.
+
+```jsx
+// store / PDdata.js
+
+export const PDcontext = createContext();
+
+const [componentState,setComponentState] = useState();
+
+const PDdata = {
+  ComponentData: {
+    state: componentState,
+    setState: setComponentState,
+  }
+  ...
+}
+```
+
+전역 state에서 각 컴포넌트에 전달하고 사용할 데이터는 다음과 같습니다.
+
+```js
+// PDoption
+
+PDoption = {
+  [...optionSetList, {
+    optionImg: [],
+    optionList: [
+      {
+        optionName: '',
+        optionValue: [undefined, undefined, undefined, false],
+        additionnal: []
+      },
+      ]
+    }
+  ]
+}
+
+//ProductInfo
+
+ProductInfo = {
+    categoryList:[],
+    filterTagList:[],
+    Product:{
+      idx:""
+      category:[],
+      filterTag:[],
+      name:"",
+      description:"",
+      thumbnail:"",
+      imgs:[],
+      stock:"",
+  }
+}
+
+...
+
+```
+
+<!-- <details>
 <summary>
 <h2 style="display:inline"> 기능 구현 요구사항 </h2> 
-</summary>
+</summary> -->
+
+## 기능 구현 요구사항
 
 ### 노출 및 판매기간 설정
 
@@ -177,36 +245,8 @@ url =
 
 ✔️ console창에 결과 출력
 
-</details>
+<!-- </details>
 
-<br/>
-
-## 이슈 정리
-
-### 다계층 구조
-
-우리팀은 각 Component에서 `Container`를 하위 컴포넌트로 하고 그 안에서 `Header`와 `Content` 를 하위 컴포넌트로 하는 구조를 선택하였습니다.
-
-각 컴포넌트들의 일관적 구조를 찾을 수 있었고, 재사용성의 극대화를 위한 선택이였습니다. 하지만 각 Component의 state들을 공유해야 했고, 각각의 props들이 전달되면서 props의 추적이 어려워지는 props Drilling 문제에 직면하게 되었습니다. 전역 state 관리를 위한 방법이 필요하다고 느꼈습니다.
-
-### How to Control Global State
-
-본 프로젝트에서는 각 컴포넌트 마다 공유하는 state가 있습니다. 때문에 효율적인 전역 State 관리가 필요했고, 우리팀은 React에서 제공하는 `ContextAPI`를 사용하기로 결정했습니다. 
-
-```jsx 
-// store / PDdata.js
-
-export const PDcontext = createContext();
-
-const [componentState,setComponentState] = useState();
-
-const PDdata = {
-  ComponentData: {
-    state: componentState,
-    setState: setComponentState,
-  }
-  ...
-}
-```
+<br/> -->
 
 ## 프로젝트 후기
