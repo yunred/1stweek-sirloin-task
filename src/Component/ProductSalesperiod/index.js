@@ -20,7 +20,7 @@ const ProductSalesperiod = (props) => {
         ContainerHeader={<PSheader />}
         ContainerContent={
           <>
-            <PScontentBox /> <PScontentBoxSecond />
+            <PScontentBoxSecond /> <PScontentBoxSecond />
           </>
         }
       />

@@ -79,7 +79,7 @@ const RedioButton = (props) => {
         <Style.DateTimePickersContainer>
           <DateTimePickers />
           <Box sx={{ mx: 0.1 }}>
-            &nbsp;&nbsp;&nbsp;&nbsp; ~&nbsp;&nbsp;&nbsp;&nbsp;{" "}
+            &nbsp;&nbsp;&nbsp;&nbsp; ~&nbsp;&nbsp;&nbsp;&nbsp;
           </Box>
           <DateTimePickers />
         </Style.DateTimePickersContainer>
