@@ -102,6 +102,10 @@ ProductInfo = {
 
 ```
 
+### Re-Rendering을 막기위한 노력
+
+Context API를 사용하면서 리렌더링의 문제의 겪었습니다. Context API의 `Provider`가 Component 전체를 감싸고 있기 때문에 하나의 컴포넌트에서 전역 State를 Update하면 전체가 리렌더링되는 현상이 있었습니다. 해결을 위해 `React.Memo()` , `useCallback()`등의 방법을 시도해봤지만, 여전히 현상이 나타났습니다. 규모가 작은 App에서는 문제가 안될지라도, 큰 프로젝트에서는 분명히 퍼포먼스 이슈를 가져올 것이라고 생각했습니다. 이러한 경험을 통해, Context API를 사용하기 좋은 조건은 Static한 상태에 가까운(거의 변하지 않는) 데이터(ex. Theme)를 하위 컴포넌트에 전달해줘야 할 때 적합하다고 생각했습니다. 
+
 ###  Input(file)에 같은 파일 업로드
 
 input(type = file)에 파일을 업로드하면 onChange 이벤트가 작동을 하는데, 같은 파일을 다시 업로드 할 경우, 이벤트가 정확히 동작하지 않았습니다.
