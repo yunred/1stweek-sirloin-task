@@ -4,12 +4,12 @@ export const ProductInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin:1rem;
-  border: 0.1em solid rgb(227,227,227);
+  /* margin:1rem;
+  border: 0.1em solid rgb(227,227,227); */
   font-weight: 600;
 
   h4 {
-    margin-top: 0;
+    margin: 0.5rem;
   }
 
   ul {
@@ -59,6 +59,7 @@ export const Title = styled.span`
   display: flex;
   align-items: center;
   font-weight: 700;
+  margin: 0.5rem;
 `;
 
 export const ItemContainer = styled.ul`
