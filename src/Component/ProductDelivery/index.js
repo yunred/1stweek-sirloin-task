@@ -96,7 +96,6 @@ export const PDeliveryContent = () => {
   const [normalState, setNormalState] = useState(deliveryState.nomalDate);
 
   useEffect(() => {
-    console.log(Number(deliveryState.orderPeriodEnd),Number(earlyMorningState))
     if (Number(deliveryState.orderPeriodEnd) > Number(earlyMorningState)){
       alert('주문시간 이후로 출고일을 지정해주세요.');
       return;

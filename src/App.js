@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import GlobalStyle from "Style/GlobalStyle";
 import Nav from "Component/Nav";
+import Topbar from "Component/Topbar";
 import ProductSalesperiod from './Component/ProductSalesperiod';
 import PDOption from 'Component/PDoption';
 import PDdata from 'store/PDdata.js';
@@ -18,6 +19,7 @@ const App = () => {
       <Nav />
       <Main>
         <PDdata>
+          <Topbar/>
           <ProductSalesperiod />
           <ProductInfo />
           <PDOption/>
