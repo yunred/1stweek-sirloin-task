@@ -183,4 +183,30 @@ url =
 
 ## 이슈 정리
 
+### 다계층 구조
+
+우리팀은 각 Component에서 `Container`를 하위 컴포넌트로 하고 그 안에서 `Header`와 `Content` 를 하위 컴포넌트로 하는 구조를 선택하였습니다.
+
+각 컴포넌트들의 일관적 구조를 찾을 수 있었고, 재사용성의 극대화를 위한 선택이였습니다. 하지만 각 Component의 state들을 공유해야 했고, 각각의 props들이 전달되면서 props의 추적이 어려워지는 props Drilling 문제에 직면하게 되었습니다. 전역 state 관리를 위한 방법이 필요하다고 느꼈습니다.
+
+### How to Control Global State
+
+본 프로젝트에서는 각 컴포넌트 마다 공유하는 state가 있습니다. 때문에 효율적인 전역 State 관리가 필요했고, 우리팀은 React에서 제공하는 `ContextAPI`를 사용하기로 결정했습니다. 
+
+```jsx 
+// store / PDdata.js
+
+export const PDcontext = createContext();
+
+const [componentState,setComponentState] = useState();
+
+const PDdata = {
+  ComponentData: {
+    state: componentState,
+    setState: setComponentState,
+  }
+  ...
+}
+```
+
 ## 프로젝트 후기
