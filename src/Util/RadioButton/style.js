@@ -32,15 +32,7 @@ export const Box = styled.div`
   margin : 10px 20px;
 `;
 
-export const Container = styled.div`
+export const DateTimePickersContainer = styled.div`
   display: flex;
+  margin: 20px 30px;
 `;
-
-export const SelectRadio = styled.div``;
-
-export const RadioContentBox = styled.div``;
-
-export const CheckBoxWrapper = styled.div``;
-
-export const CheckBox = styled.div``;
-export const CheckBoxLabel = styled.div``;

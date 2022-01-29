@@ -1,20 +1,21 @@
-import React, { createContext, useState } from 'react';
-import PIData from 'Component/ProductInfo/data';
-import PDImage from 'Component/ProductImage/data';
-import PDInfo from 'Component/ProductDelivery/data';
-import PIOrder from 'Component/ProductInfoNotice/data';
-
+import React, { createContext, useState } from "react";
+import PIData from "Component/ProductInfo/data";
+import PDImage from "Component/ProductImage/data";
+import PDInfo from "Component/ProductDelivery/data";
+import PIOrder from "Component/ProductInfoNotice/data";
+import ProductSalesperiods from "Component/ProductSalesperiod/data";
+import PSPInfo from "Component/ProductSalesperiod/calenderData";
 export const PDcontext = createContext();
 
-const PDdata = props => {
+const PDdata = (props) => {
   const [OptionSetList, setOptionLIst] = useState([]);
   const [ProductInfoList, setProductInfoLIst] = useState(PIData);
   const [ProductInfoOrder, setProductInfoOrder] = useState([PIOrder]);
   const [PDMileage, setPDMileage] = useState(true);
   const [ProductImage, setProductImage] = useState(PDImage);
   const [ETC, setETC] = useState(false);
-  const [PScontentBox, setPScontentBox] = useState();
-  const [PScontentBoxSecond, setPScontentBoxSecond] = useState();
+  const [PScontentBox, setPScontentBox] = useState(ProductSalesperiods);
+  const [PspState, setPspSate] = useState(PSPInfo);
   const [ProductDelivery, setProductDelibery] = useState(PDInfo);
 
   const PDdata = {
@@ -46,9 +47,9 @@ const PDdata = props => {
       state: PScontentBox,
       setState: setPScontentBox,
     },
-    PScontentBoxSecond: {
-      state: PScontentBoxSecond,
-      setState: setPScontentBoxSecond,
+    PspInfoState: {
+      state: PspState,
+      setState: setPspSate,
     },
     PDInfo: {
       state: ProductDelivery,
