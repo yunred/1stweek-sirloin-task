@@ -64,7 +64,7 @@ const PDdata = {
 
 전역 state에서 각 컴포넌트에 전달하고 사용할 데이터는 다음과 같습니다.
 
-```js
+```
 // PDoption
 
 PDoption = {
@@ -73,10 +73,10 @@ PDoption = {
     optionList: [
       {
         optionName: '',
-        optionValue: [undefined, undefined, undefined, false],
+        optionValue: [],
         additionnal: []
-      },
-      ]
+      }
+    ],
     }
   ]
 }
@@ -102,10 +102,33 @@ ProductInfo = {
 
 ```
 
+###  Input(file)에 같은 파일 업로드
+
+input(type = file)에 파일을 업로드하면 onChange 이벤트가 작동을 하는데, 같은 파일을 다시 업로드 할 경우, 이벤트가 정확히 동작하지 않았습니다.
+
+예를들어, 임의의 파일을 업로드 후, 삭제 후 업로드하면 onChange를 감지하지 못했습니다. 원인은 onChange는 실질적인 내용 변화에만 초점을 맞추고 있기 때문입니다.
+
+이벤트의 값을 초기화 해준 후 사용하니 문제 없이 작동 되었습니다.
+
+```jsx
+<input
+    type={"file"}
+    accept="image/*"
+    onChange={useCallback((e) =>
+      handleImage(e)
+    )}/>
+    
+const handleImage = (e) => {
+  imgsetter();
+  e.target.value // 이벤트 변수의 값을 초기화 해줍니다.
+}
+```
+
 <!-- <details>
 <summary>
 <h2 style="display:inline"> 기능 구현 요구사항 </h2> 
 </summary> -->
+
 
 ## 기능 구현 요구사항
 
@@ -122,6 +145,8 @@ ProductInfo = {
 ✔️ 판매 기한 설정(제한 없음 default)
 
 ### 상품 기본 정보
+
+![ProductInfo](https://user-images.githubusercontent.com/84373490/151648643-82e21a6e-09d7-4b80-a459-7f23b94902cd.gif)
 
 #### 카테고리
 
@@ -169,6 +194,8 @@ ProductInfo = {
 
 ### 상품 옵션
 
+![Option2](https://user-images.githubusercontent.com/84373490/151648761-e41f0f76-e9eb-4220-b3ee-3b1c4ef45340.gif)
+
 #### 상품 옵션 등록
 
 ✔️ 옵션세트 및 옵션세트 내 옵션은 여러개 생성 가능
@@ -193,11 +220,15 @@ ProductInfo = {
 
 ### 상품 이미지
 
+![ProductImg](https://user-images.githubusercontent.com/84373490/151648642-b98bdf53-472d-4649-a915-413332269b3b.gif)
+
 ✔️ 이미지 TAP 후 이미지 업로드 시, 우측에 이미지 파일명과 X버튼이 함께 노출
 
 ✔️ 추가 첨부 시, 최신업로드 순으로 추가
 
 ### 상품 정보 고시
+
+![InfoNotice](https://user-images.githubusercontent.com/84373490/151648636-a96e0909-b7b9-44cf-ba24-cac9ed5f0a9c.gif)
 
 #### 상품 정보 고시 알림 설정
 
@@ -210,6 +241,8 @@ ProductInfo = {
 ✔️ 항목 추가를 통해 정보고시 항목 추가 가능
 
 #### 사용자 배송 출발일 지정
+
+![Delivery](https://user-images.githubusercontent.com/84373490/151648987-1e09b64b-b095-49d1-9b5d-fcfd939582ca.gif)
 
 ✔️ 토글 버튼 On/Off
 
