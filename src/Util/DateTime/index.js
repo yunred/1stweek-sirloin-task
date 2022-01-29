@@ -19,7 +19,6 @@ const DateTime = (props) => {
       <DateRangePicker
         value={value}
         inputFormat="yyyy/MM/dd hh:mm"
-        mask="____/__/__ __:__"
         onChange={(newValue) => setValue(newValue)}
         renderInput={(startProps, endProps) => (
           <Style.Calender>
