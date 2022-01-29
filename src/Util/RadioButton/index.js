@@ -27,17 +27,6 @@ const RedioButton = (props) => {
     }
   };
 
-  // const PeriodChange = (e) => {
-  //   setPeriodData(`상품 판매 기한 : ${e.target.value}`);
-  //   console.log(e.target.value);
-  //   setclickedCondition({
-  //     selectValue: e.target.value,
-  //   });
-  // };
-  // console.log(periodsData);
-  // console.log(`시작 날짜: ${startDate}`);
-  // console.log(`마지막 날짜: ${endDate}`);
-
   return (
     <Style.ProductListContainer>
       <Style.ContentsBox>

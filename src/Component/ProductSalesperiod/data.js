@@ -4,7 +4,3 @@ const ProductSalesperiod = {
 };
 
 export default ProductSalesperiod;
-
-const PSPInfo = {};
-
-export default PSPInfo;

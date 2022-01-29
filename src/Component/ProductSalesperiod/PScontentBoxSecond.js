@@ -34,7 +34,7 @@ export const ProodctBox = (props) => {
   );
 };
 
-const PScontentBox = (props) => {
+const PScontentBoxSecond = (props) => {
   return (
     <>
       <ProodctBox name={<h4>상품 판매 기한</h4>} />
@@ -42,4 +42,4 @@ const PScontentBox = (props) => {
   );
 };
 
-export default PScontentBox;
+export default PScontentBoxSecond;

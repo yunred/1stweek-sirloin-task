@@ -37,3 +37,10 @@ export const Container = styled.div`
 `;
 
 export const SelectRadio = styled.div``;
+
+export const RadioContentBox = styled.div``;
+
+export const CheckBoxWrapper = styled.div``;
+
+export const CheckBox = styled.div``;
+export const CheckBoxLabel = styled.div``;
