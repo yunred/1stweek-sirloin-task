@@ -5,6 +5,7 @@ import Date from 'Util/DateTime/Date';
 import React, { useContext, useEffect, useState } from 'react';
 import { PDcontext } from 'store/PDdata';
 import * as ST from 'Util/Toggle/style.js';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const ProductDelivery = () => {
   return (
