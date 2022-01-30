@@ -17,7 +17,7 @@ url = https://condescending-leakey-a6e381.netlify.app/
 우리팀은 각 Component에서 `Container`를 하위 컴포넌트로 하고 그 안에서 `Header`와 `Content` 를 하위 컴포넌트로 하는 구조를 선택하였습니다.
 
 ```js
-// 모든 컴포넌트는 Container안의 Header + Content 구조로 구성되어 있습니다.
+// Nav와 TopBar를 제외한 모든 컴포넌트는 Container안의 Header + Content 구조로 구성되어 있습니다.
 
 - Component/
 --- index.js
@@ -30,6 +30,8 @@ url = https://condescending-leakey-a6e381.netlify.app/
 
 - src/
 --- App/
+----- Nav/
+----- TopBar/
 ----- ProductSalesperiod/
 ----- ProductInfo/
 ----- PDOption/
